@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--color-beige);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  user-select: none;
+}
+
+.wrapperDone {
+  cursor: default;
+}
+
+.circle {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.completed {
+  background: var(--color-success-green);
+  border-color: var(--color-success-green);
+}
+
+.check {
+  width: 15px;
+  height: 15px;
+  stroke: white;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+  animation: drawCheck 0.15s ease forwards;
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-black);
+  flex: 1;
+}
+
+.labelDone {
+  color: var(--color-body-gray);
+  text-decoration: line-through;
+}
