@@ -1,0 +1,49 @@
+.headline {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-black);
+  line-height: 1.2;
+  margin-bottom: var(--space-8);
+}
+
+.helper {
+  font-size: 14px;
+  color: var(--color-body-gray);
+  margin-top: var(--space-5);
+  line-height: 1.5;
+}
+
+.peakMessage {
+  margin-top: var(--space-8);
+  padding: 20px;
+  background: var(--color-beige);
+  border-left: 4px solid var(--color-success-green);
+  border-radius: var(--radius-card);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-black);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.continueBtn {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-8);
+  padding: 18px 20px;
+  background: var(--color-purple);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
