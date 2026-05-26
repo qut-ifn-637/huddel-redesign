@@ -1,0 +1,30 @@
+.brand {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-purple);
+  margin-bottom: var(--space-9);
+  text-align: center;
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--color-black);
+  line-height: 1.2;
+  margin-bottom: var(--space-5);
+}
+
+.subhead {
+  font-size: 16px;
+  color: var(--color-body-gray);
+  line-height: 1.5;
+  margin-bottom: var(--space-8);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
