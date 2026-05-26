@@ -1,0 +1,58 @@
+.headline {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-black);
+  line-height: 1.2;
+  margin-bottom: var(--space-5);
+}
+
+.helper {
+  font-size: 14px;
+  color: var(--color-body-gray);
+  margin-bottom: var(--space-8);
+  line-height: 1.5;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.dayPicker {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+.dayChip {
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--color-beige);
+  color: var(--color-black);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.dayActive {
+  background: var(--color-purple-tint);
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+.reassurance {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-purple);
+  background: var(--color-purple-tint);
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  margin-bottom: var(--space-6);
+}
