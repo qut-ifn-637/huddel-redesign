@@ -1,0 +1,21 @@
+.card {
+  width: 100%;
+  padding: 18px 20px;
+  background: var(--color-beige);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  border: 2px solid transparent;
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.1s ease, background 0.1s ease;
+}
+
+.selected {
+  border-color: var(--color-purple);
+  background: var(--color-purple-tint);
+  font-weight: 500;
+  color: var(--color-purple);
+}
