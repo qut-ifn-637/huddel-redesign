@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Huddel design tokens ── */
+:root {
+  --color-purple:          #5015ff;
+  --color-purple-tint:     #ede8ff;
+  --color-black:           #060000;
+  --color-body-gray:       #474747;
+  --color-white:           #ffffff;
+  --color-soft-blue:       #f9fafb;
+  --color-sunshine-yellow: #fff493; /* decorative only — never for text */
+  --color-orange:          #eb672f;
+  --color-success-green:   #2feb7d;
+  --color-beige:           #f4f3ec;
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --radius-card:   20px;
+  --radius-button: 20px;
+
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  8px;
+  --space-4:  10px;
+  --space-5:  15px;
+  --space-6:  20px;
+  --space-7:  25px;
+  --space-8:  30px;
+  --space-9:  50px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.4;
+  background: var(--color-soft-blue);
+  color: var(--color-black);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── App shell: max 390px, centred, white background ── */
+#root {
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: var(--color-white);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Screen fade transition ── */
+.screenWrapper {
+  min-height: 100dvh;
+  opacity: 1;
+  transition: opacity 0.15s ease;
+}
+
+.screenWrapper.fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Utility: screen padding ── */
+.screenPad {
+  padding: var(--space-6) var(--space-6) 120px; /* 120px bottom = room for fixed button */
+}
+
+/* ── Utility: bottom action area (fixed within max-width shell) ── */
+.bottomActions {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 390px;
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  background: linear-gradient(transparent, var(--color-white) 30%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
