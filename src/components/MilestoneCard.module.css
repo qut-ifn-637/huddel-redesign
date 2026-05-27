@@ -61,21 +61,31 @@
 
 .actionItem {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
   padding: 12px 14px;
   background: var(--color-beige);
-  border-radius: 14px;
+  border-left: 3px solid var(--color-purple);
+  border-radius: 12px;
   font-size: 14px;
+  line-height: 1.4;
+}
+
+.actionLabel {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--color-black);
 }
 
 .removeBtn {
+  flex-shrink: 0;
   background: none;
   border: none;
   color: var(--color-body-gray);
   font-size: 20px;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 2px;
   line-height: 1;
 }
 

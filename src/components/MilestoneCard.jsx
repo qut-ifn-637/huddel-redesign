@@ -44,7 +44,7 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
             <ul className={styles.actionList}>
               {milestone.actions.map(action => (
                 <li key={action.id} className={styles.actionItem}>
-                  <span>{action.label}</span>
+                  <span className={styles.actionLabel}>{action.label}</span>
                   <button
                     type="button"
                     className={styles.removeBtn}
