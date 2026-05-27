@@ -3,7 +3,7 @@ import styles from './MilestoneCard.module.css'
 
 const EFFORT_CHIPS = ['Write 400 words', 'Read for 30 min', 'Practice 20 min', 'Draft one section']
 
-export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction, onToggleKind }) {
+export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction, onSetKind }) {
   const [customInput, setCustomInput] = useState('')
   const [showCustom, setShowCustom] = useState(false)
 
@@ -42,31 +42,46 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
         <div className={styles.body}>
           {milestone.actions.length > 0 && (
             <ul className={styles.actionList}>
-              {milestone.actions.map(action => (
-                <li key={action.id} className={styles.actionItem}>
-                  <span className={styles.actionLabel}>{action.label}</span>
-                  <button
-                    type="button"
-                    className={styles.kindToggle}
-                    onClick={() => onToggleKind(action.id)}
-                    aria-label={
-                      action.kind === 'once'
-                        ? `${action.label}: one-off, tap to make it repeat`
-                        : `${action.label}: repeats, tap to make it one-off`
-                    }
-                  >
-                    {action.kind === 'once' ? 'Just once' : 'Repeats'}
-                  </button>
-                  <button
-                    type="button"
-                    className={styles.removeBtn}
-                    onClick={() => onRemoveAction(action.id)}
-                    aria-label={`Remove ${action.label}`}
-                  >
-                    ×
-                  </button>
-                </li>
-              ))}
+              {milestone.actions.map(action => {
+                const isOnce = action.kind === 'once'
+                return (
+                  <li key={action.id} className={styles.actionItem}>
+                    <div className={styles.actionTop}>
+                      <span className={styles.actionLabel}>{action.label}</span>
+                      <button
+                        type="button"
+                        className={styles.removeBtn}
+                        onClick={() => onRemoveAction(action.id)}
+                        aria-label={`Remove ${action.label}`}
+                      >
+                        ×
+                      </button>
+                    </div>
+                    <div
+                      className={styles.segmented}
+                      role="group"
+                      aria-label={`How often will you do this: ${action.label}`}
+                    >
+                      <button
+                        type="button"
+                        className={`${styles.segment} ${!isOnce ? styles.segmentActive : ''}`}
+                        aria-pressed={!isOnce}
+                        onClick={() => onSetKind(action.id, 'repeat')}
+                      >
+                        Repeats
+                      </button>
+                      <button
+                        type="button"
+                        className={`${styles.segment} ${isOnce ? styles.segmentActive : ''}`}
+                        aria-pressed={isOnce}
+                        onClick={() => onSetKind(action.id, 'once')}
+                      >
+                        Just once
+                      </button>
+                    </div>
+                  </li>
+                )
+              })}
             </ul>
           )}
 

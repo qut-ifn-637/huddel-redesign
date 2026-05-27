@@ -61,7 +61,7 @@
 
 .actionItem {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   gap: 10px;
   padding: 12px 14px;
   background: var(--color-white);
@@ -70,6 +70,12 @@
   border-radius: 12px;
   font-size: 14px;
   line-height: 1.4;
+}
+
+.actionTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .actionLabel {
@@ -176,16 +182,32 @@
   cursor: pointer;
 }
 
-.kindToggle {
-  flex-shrink: 0;
-  background: var(--color-beige);
-  border: 1px solid #e6e0ff;
+.segmented {
+  display: inline-flex;
+  align-self: flex-start;
+  border: 1.5px solid #e6e0ff;
   border-radius: 999px;
-  color: var(--color-purple);
+  overflow: hidden;
+}
+
+.segment {
+  background: none;
+  border: none;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;
-  padding: 3px 10px;
+  color: var(--color-purple);
+  padding: 5px 14px;
   cursor: pointer;
   white-space: nowrap;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.segment + .segment {
+  border-left: 1.5px solid #e6e0ff;
+}
+
+.segmentActive {
+  background: var(--color-purple);
+  color: white;
 }

@@ -51,5 +51,5 @@ test('+ Add milestone adds a second milestone', async () => {
 test('a newly added action defaults to repeating', async () => {
   renderWithApp(<GoalActions />, { initialStateOverrides: seed })
   await userEvent.click(screen.getByText('Read for 30 min'))
-  expect(screen.getByText('Repeats')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Repeats' })).toHaveAttribute('aria-pressed', 'true')
 })

@@ -28,10 +28,10 @@ export default function GoalActions() {
     }))
   }
 
-  function toggleKind(milestoneId, actionId) {
+  function setKind(milestoneId, actionId, kind) {
     updateMilestone(milestoneId, m => ({
       ...m,
-      actions: m.actions.map(a => (a.id === actionId ? { ...a, kind: a.kind === 'once' ? 'repeat' : 'once' } : a)),
+      actions: m.actions.map(a => (a.id === actionId ? { ...a, kind } : a)),
     }))
   }
 
@@ -82,7 +82,7 @@ export default function GoalActions() {
             onRename={name => renameMilestone(milestone.id, name)}
             onAddAction={(label, source) => addAction(milestone.id, label, source)}
             onRemoveAction={actionId => removeAction(milestone.id, actionId)}
-            onToggleKind={actionId => toggleKind(milestone.id, actionId)}
+            onSetKind={(actionId, kind) => setKind(milestone.id, actionId, kind)}
           />
         ))}
       </div>
