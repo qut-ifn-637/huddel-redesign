@@ -5,11 +5,11 @@ function wrapper({ children }) {
   return <AppProvider>{children}</AppProvider>
 }
 
-test('initial state has one empty step', () => {
+test('initial state has one empty milestone', () => {
   const { result } = renderHook(() => useApp(), { wrapper })
-  expect(result.current.state.steps).toHaveLength(1)
-  expect(result.current.state.steps[0].name).toBe('')
-  expect(result.current.state.steps[0].actions).toEqual([])
+  expect(result.current.state.milestones).toHaveLength(1)
+  expect(result.current.state.milestones[0].name).toBe('')
+  expect(result.current.state.milestones[0].actions).toEqual([])
 })
 
 test('initial state has correct defaults (no context field)', () => {
@@ -56,10 +56,10 @@ test('initialStateOverrides are applied when provided', () => {
   expect(result.current.state.goalName).toBe('Pre-filled goal')
 })
 
-test('allActions flattens actions across all steps', () => {
-  const steps = [
-    { id: 's1', name: 'A', actions: [{ id: 'a1' }, { id: 'a2' }] },
-    { id: 's2', name: 'B', actions: [{ id: 'a3' }] },
+test('allActions flattens actions across all milestones', () => {
+  const milestones = [
+    { id: 'm1', name: 'A', actions: [{ id: 'a1' }, { id: 'a2' }] },
+    { id: 'm2', name: 'B', actions: [{ id: 'a3' }] },
   ]
-  expect(allActions(steps).map(a => a.id)).toEqual(['a1', 'a2', 'a3'])
+  expect(allActions(milestones).map(a => a.id)).toEqual(['a1', 'a2', 'a3'])
 })

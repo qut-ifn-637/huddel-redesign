@@ -1,42 +1,22 @@
-.brand {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 600;
+.back {
+  background: none;
+  border: none;
   color: var(--color-purple);
-  margin-bottom: var(--space-7);
-  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--space-4);
 }
 
-.headline {
+.goalHeading {
   font-family: var(--font-heading);
   font-size: 28px;
   font-weight: 600;
   color: var(--color-black);
   line-height: 1.2;
-  margin-bottom: var(--space-3);
-}
-
-.subhead {
-  font-size: 15px;
-  color: var(--color-body-gray);
-  line-height: 1.5;
-  margin-bottom: var(--space-7);
-}
-
-.goalInput {
-  width: 100%;
-  padding: 14px 16px;
-  font-family: var(--font-body);
-  font-size: 16px;
-  border: 1.5px solid #ddd;
-  border-radius: var(--radius-card);
-  margin-bottom: var(--space-7);
-  outline: none;
-  transition: border-color 0.15s;
-}
-
-.goalInput:focus {
-  border-color: var(--color-purple);
+  margin-bottom: var(--space-6);
 }
 
 .sectionLabel {
@@ -52,13 +32,13 @@
   line-height: 1.5;
 }
 
-.steps {
+.milestones {
   display: flex;
   flex-direction: column;
   margin-bottom: var(--space-4);
 }
 
-.addStep {
+.addMilestone {
   width: 100%;
   border: 1px dashed #c8bfff;
   color: var(--color-purple);
@@ -73,6 +53,6 @@
   transition: border-color 0.15s;
 }
 
-.addStep:hover {
+.addMilestone:hover {
   border-color: var(--color-purple);
 }

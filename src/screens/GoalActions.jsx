@@ -1,92 +1,81 @@
 import { useState } from 'react'
 import { useApp, allActions } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
-import StepCard from '../components/StepCard'
+import MilestoneCard from '../components/MilestoneCard'
 import styles from './GoalActions.module.css'
 
-let nextStep = 2
+let nextMilestone = 2
 let nextAction = 100
 
 export default function GoalActions() {
   const { state, updateState, goTo } = useApp()
-  const [goalName, setGoalName] = useState(state.goalName)
-  const [steps, setSteps] = useState(state.steps)
-  const [expandedId, setExpandedId] = useState(state.steps[0]?.id ?? null)
+  const [milestones, setMilestones] = useState(state.milestones)
+  const [expandedId, setExpandedId] = useState(state.milestones[0]?.id ?? null)
 
-  function updateStep(stepId, updater) {
-    setSteps(prev => prev.map(s => (s.id === stepId ? updater(s) : s)))
+  function updateMilestone(milestoneId, updater) {
+    setMilestones(prev => prev.map(m => (m.id === milestoneId ? updater(m) : m)))
   }
 
-  function renameStep(stepId, name) {
-    updateStep(stepId, s => ({ ...s, name }))
+  function renameMilestone(milestoneId, name) {
+    updateMilestone(milestoneId, m => ({ ...m, name }))
   }
 
-  function addAction(stepId, label, source) {
-    updateStep(stepId, s => ({
-      ...s,
-      actions: [...s.actions, { id: `act-${nextAction++}`, label, source, completed: false }],
+  function addAction(milestoneId, label, source) {
+    updateMilestone(milestoneId, m => ({
+      ...m,
+      actions: [...m.actions, { id: `act-${nextAction++}`, label, source, completed: false }],
     }))
   }
 
-  function removeAction(stepId, actionId) {
-    updateStep(stepId, s => ({ ...s, actions: s.actions.filter(a => a.id !== actionId) }))
+  function removeAction(milestoneId, actionId) {
+    updateMilestone(milestoneId, m => ({ ...m, actions: m.actions.filter(a => a.id !== actionId) }))
   }
 
-  function addStep() {
-    const id = `step-${nextStep++}`
-    setSteps(prev => [...prev, { id, name: '', actions: [] }])
+  function addMilestone() {
+    const id = `milestone-${nextMilestone++}`
+    setMilestones(prev => [...prev, { id, name: '', actions: [] }])
     setExpandedId(id)
   }
 
-  function toggleStep(stepId) {
-    setExpandedId(prev => (prev === stepId ? null : stepId))
+  function toggleMilestone(milestoneId) {
+    setExpandedId(prev => (prev === milestoneId ? null : milestoneId))
   }
 
   function handleNext() {
-    const pruned = steps.filter(s => s.actions.length > 0)
-    updateState({ goalName, steps: pruned })
+    const pruned = milestones.filter(m => m.actions.length > 0)
+    updateState({ milestones: pruned })
     goTo('cadence')
   }
 
-  const canAdvance = goalName.trim().length > 0 && allActions(steps).length > 0
+  const canAdvance = allActions(milestones).length > 0
 
   return (
     <div className="screenPad">
-      <div className={styles.brand}>Huddel</div>
-      <h1 className={styles.headline}>What are you working toward?</h1>
-      <p className={styles.subhead}>
-        Huddel plans around real life — so your goals bend when your week does.
-      </p>
+      <button type="button" className={styles.back} onClick={() => goTo('goal')}>← Edit goal</button>
+      <h1 className={styles.goalHeading}>{state.goalName}</h1>
 
-      <input
-        className={styles.goalInput}
-        type="text"
-        placeholder="e.g. Finish my essay"
-        value={goalName}
-        onChange={e => setGoalName(e.target.value)}
-      />
-
-      <p className={styles.sectionLabel}>Break it into steps</p>
+      <p className={styles.sectionLabel}>Break it into milestones</p>
+      <p className="scienceNote">Near-term milestones build momentum and confidence. — Bandura &amp; Schunk, 1981</p>
       <p className={styles.helper}>
-        Optional — add as many as help, or keep just one. Describe each action by what you&apos;ll do.
+        Optional — add as many as help, or keep just one. Each milestone holds the effort actions you&apos;ll actually do.
       </p>
 
-      <div className={styles.steps}>
-        {steps.map(step => (
-          <StepCard
-            key={step.id}
-            step={step}
-            expanded={expandedId === step.id}
-            onToggle={() => toggleStep(step.id)}
-            onRename={name => renameStep(step.id, name)}
-            onAddAction={(label, source) => addAction(step.id, label, source)}
-            onRemoveAction={actionId => removeAction(step.id, actionId)}
+      <div className={styles.milestones}>
+        {milestones.map(milestone => (
+          <MilestoneCard
+            key={milestone.id}
+            milestone={milestone}
+            expanded={expandedId === milestone.id}
+            onToggle={() => toggleMilestone(milestone.id)}
+            onRename={name => renameMilestone(milestone.id, name)}
+            onAddAction={(label, source) => addAction(milestone.id, label, source)}
+            onRemoveAction={actionId => removeAction(milestone.id, actionId)}
           />
         ))}
       </div>
 
-      <button type="button" className={styles.addStep} onClick={addStep}>
-        + Add step
+      <button type="button" className={styles.addMilestone} onClick={addMilestone}>
+        + Add milestone
       </button>
 
       <div className="bottomActions">

@@ -2,8 +2,8 @@ import { createContext, useContext, useState } from 'react'
 
 const defaultState = {
   goalName: '',
-  steps: [
-    { id: 'step-1', name: '', actions: [] },
+  milestones: [
+    { id: 'milestone-1', name: '', actions: [] },
   ],
   cadence: 'few_times_week',
   cadenceDays: [],
@@ -12,8 +12,8 @@ const defaultState = {
 
 const AppContext = createContext(null)
 
-export function allActions(steps) {
-  return steps.flatMap(s => s.actions)
+export function allActions(milestones) {
+  return milestones.flatMap(m => m.actions)
 }
 
 export function AppProvider({ children, initialStateOverrides = {} }) {

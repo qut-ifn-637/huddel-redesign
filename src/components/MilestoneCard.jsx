@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import styles from './StepCard.module.css'
+import styles from './MilestoneCard.module.css'
 
 const EFFORT_CHIPS = ['Write 400 words', 'Read for 30 min', 'Practice 20 min', 'Draft one section']
 
-export default function StepCard({ step, expanded, onToggle, onRename, onAddAction, onRemoveAction }) {
+export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction }) {
   const [customInput, setCustomInput] = useState('')
   const [showCustom, setShowCustom] = useState(false)
 
@@ -22,10 +22,10 @@ export default function StepCard({ step, expanded, onToggle, onRename, onAddActi
         <input
           className={styles.nameInput}
           type="text"
-          placeholder="Name this step — e.g. Research"
-          value={step.name}
+          placeholder="Name this milestone — e.g. Research"
+          value={milestone.name}
           onChange={e => onRename(e.target.value)}
-          aria-label="Step name"
+          aria-label="Milestone name"
         />
         <button
           type="button"
@@ -40,9 +40,9 @@ export default function StepCard({ step, expanded, onToggle, onRename, onAddActi
 
       {expanded && (
         <div className={styles.body}>
-          {step.actions.length > 0 && (
+          {milestone.actions.length > 0 && (
             <ul className={styles.actionList}>
-              {step.actions.map(action => (
+              {milestone.actions.map(action => (
                 <li key={action.id} className={styles.actionItem}>
                   <span>{action.label}</span>
                   <button
@@ -59,6 +59,7 @@ export default function StepCard({ step, expanded, onToggle, onRename, onAddActi
           )}
 
           <p className={styles.addLabel}>Add an effort-based action</p>
+          <p className="scienceNote">Describe what you&apos;ll do, not the finish line. — Pham &amp; Taylor, 1999</p>
           <div className={styles.chips}>
             {EFFORT_CHIPS.map(chip => (
               <button key={chip} type="button" className={styles.chip} onClick={() => onAddAction(chip, 'effort')}>
