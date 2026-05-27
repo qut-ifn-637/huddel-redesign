@@ -8,7 +8,6 @@ import styles from './OfferedSocial.module.css'
 const ROLES = [
   { value: 'all',          label: 'Everything',       description: 'Sees your goals, progress, and the hard days — e.g. a partner or close friend.' },
   { value: 'progress',     label: 'Progress',         description: 'Sees your wins and momentum, not the struggles — e.g. an acquaintance.' },
-  { value: 'single_goal',  label: 'Just this goal',   description: 'Sees just this one goal, nothing else — e.g. a study buddy or classmate.' },
   { value: 'availability', label: 'Just availability', description: "Sees that you're busy, not what you're working on — e.g. a manager or coworker." },
 ]
 

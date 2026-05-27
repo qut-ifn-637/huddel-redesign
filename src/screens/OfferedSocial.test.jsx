@@ -42,10 +42,10 @@ test('renders a header for the roles/permissions section', () => {
   expect(screen.getByText('What will they see?')).toBeInTheDocument()
 })
 
-test('role chips: all four options render', () => {
+test('role chips: all three options render', () => {
   renderWithApp(<OfferedSocial />)
   expect(screen.getByText('Everything')).toBeInTheDocument()
   expect(screen.getByText('Progress')).toBeInTheDocument()
-  expect(screen.getByText('Just this goal')).toBeInTheDocument()
   expect(screen.getByText('Just availability')).toBeInTheDocument()
+  expect(screen.queryByText('Just this goal')).not.toBeInTheDocument()
 })
