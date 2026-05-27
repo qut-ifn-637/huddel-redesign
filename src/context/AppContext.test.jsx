@@ -22,9 +22,9 @@ test('initial state has correct defaults (no context field)', () => {
   expect(state.supporters).toEqual([])
 })
 
-test('currentScreen starts at goal-actions', () => {
+test('currentScreen starts at goal', () => {
   const { result } = renderHook(() => useApp(), { wrapper })
-  expect(result.current.currentScreen).toBe('goal-actions')
+  expect(result.current.currentScreen).toBe('goal')
 })
 
 test('updateState merges partial updates without clobbering other fields', () => {
@@ -38,7 +38,7 @@ test('goTo changes currentScreen after 150ms', async () => {
   vi.useFakeTimers()
   const { result } = renderHook(() => useApp(), { wrapper })
   act(() => { result.current.goTo('cadence') })
-  expect(result.current.currentScreen).toBe('goal-actions') // old screen during fade
+  expect(result.current.currentScreen).toBe('goal') // old screen during fade
   act(() => { vi.advanceTimersByTime(150) })
   expect(result.current.currentScreen).toBe('cadence')
   vi.useRealTimers()

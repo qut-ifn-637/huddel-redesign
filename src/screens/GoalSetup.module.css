@@ -1,0 +1,46 @@
+.brand {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-purple);
+  margin-bottom: var(--space-9);
+  text-align: center;
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--color-black);
+  line-height: 1.2;
+  margin-bottom: var(--space-5);
+}
+
+.subhead {
+  font-size: 16px;
+  color: var(--color-body-gray);
+  line-height: 1.5;
+  margin-bottom: var(--space-8);
+}
+
+.goalInput {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  border: 1.5px solid #ddd;
+  border-radius: var(--radius-card);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.goalInput:focus {
+  border-color: var(--color-purple);
+}
+
+.helper {
+  font-size: 14px;
+  color: var(--color-body-gray);
+  line-height: 1.5;
+  margin-top: var(--space-3);
+}

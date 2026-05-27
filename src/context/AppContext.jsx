@@ -18,7 +18,7 @@ export function allActions(steps) {
 
 export function AppProvider({ children, initialStateOverrides = {} }) {
   const [state, setState] = useState({ ...defaultState, ...initialStateOverrides })
-  const [currentScreen, setCurrentScreen] = useState('goal-actions')
+  const [currentScreen, setCurrentScreen] = useState('goal')
   const [fading, setFading] = useState(false)
 
   function goTo(screenId) {

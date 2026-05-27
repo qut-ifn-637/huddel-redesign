@@ -88,3 +88,13 @@ body {
   flex-direction: column;
   gap: var(--space-3);
 }
+
+/* ── Utility: cited science note (subtle, never competes with primary content) ── */
+.scienceNote {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-body-gray);
+  line-height: 1.4;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-5);
+}
