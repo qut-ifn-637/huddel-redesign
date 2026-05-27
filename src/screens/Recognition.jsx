@@ -7,7 +7,7 @@ import BackButton from '../components/BackButton'
 import styles from './Recognition.module.css'
 
 export default function Recognition() {
-  const { state, updateState, goTo, goBack } = useApp()
+  const { state, updateState, enterApp, goBack } = useApp()
   const [milestones, setMilestones] = useState(state.milestones)
   const [completedAny, setCompletedAny] = useState(false)
   const [showContinue, setShowContinue] = useState(false)
@@ -84,11 +84,11 @@ export default function Recognition() {
 
       <div className="bottomActions">
         {showContinue && (
-          <PrimaryButton onClick={() => goTo('return-view')}>
+          <PrimaryButton onClick={enterApp}>
             {continueLabel}
           </PrimaryButton>
         )}
-        <SkipButton onClick={() => goTo('return-view')}>Skip for now</SkipButton>
+        <SkipButton onClick={enterApp}>Skip for now</SkipButton>
       </div>
     </div>
   )

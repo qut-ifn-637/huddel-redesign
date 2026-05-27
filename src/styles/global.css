@@ -28,6 +28,7 @@
   --space-7:  25px;
   --space-8:  30px;
   --space-9:  50px;
+  --nav-h: 64px;
 }
 
 /* ── Reset ── */
@@ -97,4 +98,15 @@ body {
   line-height: 1.4;
   margin-top: var(--space-2);
   margin-bottom: var(--space-5);
+}
+
+/* ── App shell: leaves room for the fixed bottom nav, and lifts any screen's
+   bottom action bar above the nav so they don't overlap ── */
+.appShell {
+  min-height: 100dvh;
+  padding-bottom: var(--nav-h);
+}
+
+.appShell .bottomActions {
+  bottom: var(--nav-h);
 }

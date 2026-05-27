@@ -4,8 +4,7 @@ import GoalActions from './screens/GoalActions'
 import Cadence from './screens/Cadence'
 import OfferedSocial from './screens/OfferedSocial'
 import Recognition from './screens/Recognition'
-import ReturnView from './screens/ReturnView'
-import styles from './App.module.css'
+import AppShell from './components/AppShell'
 
 const SCREENS = {
   'goal':           GoalSetup,
@@ -13,10 +12,9 @@ const SCREENS = {
   'cadence':        Cadence,
   'offered-social': OfferedSocial,
   'recognition':    Recognition,
-  'return-view':    ReturnView,
 }
 
-function Router() {
+function OnboardingRouter() {
   const { currentScreen, fading } = useApp()
   const Screen = SCREENS[currentScreen]
   return (
@@ -26,10 +24,15 @@ function Router() {
   )
 }
 
+function Root() {
+  const { inApp } = useApp()
+  return inApp ? <AppShell /> : <OnboardingRouter />
+}
+
 export default function App() {
   return (
     <AppProvider>
-      <Router />
+      <Root />
     </AppProvider>
   )
 }
