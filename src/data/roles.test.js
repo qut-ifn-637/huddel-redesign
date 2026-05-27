@@ -16,3 +16,10 @@ test('every role has a label, description, and a "sees" phrase', () => {
     expect(role.sees).toBeTruthy()
   }
 })
+
+test('every role has a supporter-side shareLabel', () => {
+  const expected = { all: 'shares everything', progress: 'shares progress', availability: 'availability only' }
+  for (const role of ROLES) {
+    expect(role.shareLabel).toBe(expected[role.value])
+  }
+})
