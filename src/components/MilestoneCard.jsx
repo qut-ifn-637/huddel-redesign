@@ -3,7 +3,7 @@ import styles from './MilestoneCard.module.css'
 
 const EFFORT_CHIPS = ['Write 400 words', 'Read for 30 min', 'Practice 20 min', 'Draft one section']
 
-export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction }) {
+export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction, onToggleKind }) {
   const [customInput, setCustomInput] = useState('')
   const [showCustom, setShowCustom] = useState(false)
 
@@ -45,6 +45,18 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
               {milestone.actions.map(action => (
                 <li key={action.id} className={styles.actionItem}>
                   <span className={styles.actionLabel}>{action.label}</span>
+                  <button
+                    type="button"
+                    className={styles.kindToggle}
+                    onClick={() => onToggleKind(action.id)}
+                    aria-label={
+                      action.kind === 'once'
+                        ? `${action.label}: one-off, tap to make it repeat`
+                        : `${action.label}: repeats, tap to make it one-off`
+                    }
+                  >
+                    {action.kind === 'once' ? 'Just once' : 'Repeats'}
+                  </button>
                   <button
                     type="button"
                     className={styles.removeBtn}

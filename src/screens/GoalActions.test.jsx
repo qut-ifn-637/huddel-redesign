@@ -47,3 +47,9 @@ test('+ Add milestone adds a second milestone', async () => {
   await userEvent.click(screen.getByRole('button', { name: /add milestone/i }))
   expect(screen.getAllByPlaceholderText(/name this milestone/i)).toHaveLength(2)
 })
+
+test('a newly added action defaults to repeating', async () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  await userEvent.click(screen.getByText('Read for 30 min'))
+  expect(screen.getByText('Repeats')).toBeInTheDocument()
+})

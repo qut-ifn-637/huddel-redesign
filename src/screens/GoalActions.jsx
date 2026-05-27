@@ -24,7 +24,14 @@ export default function GoalActions() {
   function addAction(milestoneId, label, source) {
     updateMilestone(milestoneId, m => ({
       ...m,
-      actions: [...m.actions, { id: `act-${nextAction++}`, label, source, completed: false }],
+      actions: [...m.actions, { id: `act-${nextAction++}`, label, source, kind: 'repeat', count: 0 }],
+    }))
+  }
+
+  function toggleKind(milestoneId, actionId) {
+    updateMilestone(milestoneId, m => ({
+      ...m,
+      actions: m.actions.map(a => (a.id === actionId ? { ...a, kind: a.kind === 'once' ? 'repeat' : 'once' } : a)),
     }))
   }
 
@@ -75,6 +82,7 @@ export default function GoalActions() {
             onRename={name => renameMilestone(milestone.id, name)}
             onAddAction={(label, source) => addAction(milestone.id, label, source)}
             onRemoveAction={actionId => removeAction(milestone.id, actionId)}
+            onToggleKind={actionId => toggleKind(milestone.id, actionId)}
           />
         ))}
       </div>

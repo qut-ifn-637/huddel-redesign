@@ -175,3 +175,17 @@
   border-radius: 12px;
   cursor: pointer;
 }
+
+.kindToggle {
+  flex-shrink: 0;
+  background: var(--color-beige);
+  border: 1px solid #e6e0ff;
+  border-radius: 999px;
+  color: var(--color-purple);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}

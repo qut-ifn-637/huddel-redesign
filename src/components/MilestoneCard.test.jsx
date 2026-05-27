@@ -6,7 +6,7 @@ const emptyMilestone = { id: 'm1', name: '', actions: [] }
 const filledMilestone = {
   id: 'm1',
   name: 'Research',
-  actions: [{ id: 'a1', label: 'Read 3 sources', source: 'effort', completed: false }],
+  actions: [{ id: 'a1', label: 'Read 3 sources', source: 'effort', kind: 'repeat', count: 0 }],
 }
 
 const noop = () => {}
@@ -19,6 +19,7 @@ function renderCard(overrides = {}) {
     onRename: noop,
     onAddAction: noop,
     onRemoveAction: noop,
+    onToggleKind: noop,
     ...overrides,
   }
   return render(<MilestoneCard {...props} />)
@@ -86,4 +87,20 @@ test('custom action submits with source "custom"', async () => {
 test('expanded card shows the Pham & Taylor science note', () => {
   renderCard({ expanded: true })
   expect(screen.getByText(/Pham & Taylor/)).toBeInTheDocument()
+})
+
+test('an action shows a Repeats toggle that calls onToggleKind', async () => {
+  const onToggleKind = vi.fn()
+  renderCard({ milestone: filledMilestone, expanded: true, onToggleKind })
+  await userEvent.click(screen.getByRole('button', { name: /repeats, tap to make it one-off/i }))
+  expect(onToggleKind).toHaveBeenCalledWith('a1')
+})
+
+test('a one-off action shows the "Just once" label', () => {
+  const once = {
+    ...filledMilestone,
+    actions: [{ id: 'a1', label: 'Submit draft', source: 'effort', kind: 'once', count: 0 }],
+  }
+  renderCard({ milestone: once, expanded: true })
+  expect(screen.getByText('Just once')).toBeInTheDocument()
 })
