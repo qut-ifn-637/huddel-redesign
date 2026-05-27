@@ -1,0 +1,60 @@
+.greeting {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-body-gray);
+  margin-bottom: var(--space-2);
+}
+
+.goalName {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-black);
+  line-height: 1.2;
+  margin-bottom: var(--space-6);
+}
+
+.progress {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-purple);
+  background: var(--color-purple-tint);
+  padding: 10px 16px;
+  border-radius: 12px;
+  margin-bottom: var(--space-6);
+}
+
+.actionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.supporterLine {
+  font-size: 14px;
+  color: var(--color-body-gray);
+  margin-bottom: var(--space-6);
+}
+
+.reOffer {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-body-gray);
+  background: none;
+  border: 1px dashed #ccc;
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: var(--space-6);
+  transition: border-color 0.15s;
+}
+
+.reOffer:hover {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
