@@ -3,10 +3,11 @@ import { useApp } from '../context/AppContext'
 import CompleteControl from '../components/CompleteControl'
 import PrimaryButton from '../components/PrimaryButton'
 import SkipButton from '../components/SkipButton'
+import BackButton from '../components/BackButton'
 import styles from './Recognition.module.css'
 
 export default function Recognition() {
-  const { state, updateState, goTo } = useApp()
+  const { state, updateState, goTo, goBack } = useApp()
   const [milestones, setMilestones] = useState(state.milestones)
   const [completedAny, setCompletedAny] = useState(false)
   const [showContinue, setShowContinue] = useState(false)
@@ -31,6 +32,7 @@ export default function Recognition() {
 
   return (
     <div className="screenPad">
+      <BackButton onClick={goBack} />
       <h1 className={styles.headline}>You&apos;re set up. Try it once.</h1>
 
       <div className={styles.milestones}>

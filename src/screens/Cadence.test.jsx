@@ -5,7 +5,12 @@ import Cadence from './Cadence'
 
 test('renders headline verbatim', () => {
   renderWithApp(<Cadence />)
-  expect(screen.getByText('How often feels realistic?')).toBeInTheDocument()
+  expect(screen.getByText('How often can you work on this?')).toBeInTheDocument()
+})
+
+test('renders a back control', () => {
+  renderWithApp(<Cadence />)
+  expect(screen.getByRole('button', { name: /go back/i })).toBeInTheDocument()
 })
 
 test('renders all four cadence options', () => {

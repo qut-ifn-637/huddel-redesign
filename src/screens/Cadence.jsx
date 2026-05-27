@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import OptionCard from '../components/OptionCard'
 import PrimaryButton from '../components/PrimaryButton'
+import BackButton from '../components/BackButton'
 import styles from './Cadence.module.css'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -14,7 +15,7 @@ const OPTIONS = [
 ]
 
 export default function Cadence() {
-  const { state, updateState, goTo } = useApp()
+  const { state, updateState, goTo, goBack } = useApp()
   const [cadence, setCadence] = useState(state.cadence)
   const [cadenceDays, setCadenceDays] = useState(state.cadenceDays)
 
@@ -26,6 +27,11 @@ export default function Cadence() {
     )
   }
 
+  function handleBack() {
+    updateState({ cadence, cadenceDays })
+    goBack()
+  }
+
   function handleNext() {
     updateState({ cadence, cadenceDays })
     goTo('offered-social')
@@ -33,7 +39,8 @@ export default function Cadence() {
 
   return (
     <div className="screenPad">
-      <h1 className={styles.headline}>How often feels realistic?</h1>
+      <BackButton onClick={handleBack} />
+      <h1 className={styles.headline}>How often can you work on this?</h1>
       <p className={styles.helper}>No wrong answer. You can change this whenever your week changes.</p>
       <p className="scienceNote">A cadence you&apos;ll actually keep protects commitment. — Locke &amp; Latham, 2002</p>
 

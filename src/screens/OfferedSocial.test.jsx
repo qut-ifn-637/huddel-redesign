@@ -5,7 +5,12 @@ import OfferedSocial from './OfferedSocial'
 
 test('renders headline verbatim', () => {
   renderWithApp(<OfferedSocial />)
-  expect(screen.getByText('Want someone in your corner?')).toBeInTheDocument()
+  expect(screen.getByText('Want a supporter in your corner?')).toBeInTheDocument()
+})
+
+test('renders a back control', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.getByRole('button', { name: /go back/i })).toBeInTheDocument()
 })
 
 test('"Done — continue" button is always visible and enabled', () => {

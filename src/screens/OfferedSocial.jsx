@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
 import SkipButton from '../components/SkipButton'
+import BackButton from '../components/BackButton'
 import styles from './OfferedSocial.module.css'
 
 const ROLES = [
@@ -12,7 +13,7 @@ const ROLES = [
 ]
 
 export default function OfferedSocial() {
-  const { state, updateState, goTo } = useApp()
+  const { state, updateState, goTo, goBack } = useApp()
   const [name, setName] = useState('')
   const [selectedRole, setSelectedRole] = useState(null)
   const [supporters, setSupporters] = useState(state.supporters)
@@ -23,6 +24,11 @@ export default function OfferedSocial() {
       setName('')
       setSelectedRole(null)
     }
+  }
+
+  function handleBack() {
+    updateState({ supporters })
+    goBack()
   }
 
   function handleContinue() {
@@ -39,7 +45,8 @@ export default function OfferedSocial() {
 
   return (
     <div className="screenPad">
-      <h1 className={styles.headline}>Want someone in your corner?</h1>
+      <BackButton onClick={handleBack} />
+      <h1 className={styles.headline}>Want a supporter in your corner?</h1>
       <p className={styles.subhead}>
         Adding people is optional — and you choose exactly what they see. You can do this any time later.
       </p>

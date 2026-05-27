@@ -82,3 +82,8 @@ test('continue shows home-base copy for when_i_can cadence', () => {
   expect(screen.getByText(/See your home base/)).toBeInTheDocument()
   vi.useRealTimers()
 })
+
+test('renders a back control', () => {
+  renderWithApp(<Recognition />, { initialStateOverrides: seedState })
+  expect(screen.getByRole('button', { name: /go back/i })).toBeInTheDocument()
+})
