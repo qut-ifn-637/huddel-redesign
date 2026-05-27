@@ -42,7 +42,7 @@ The prototype is stateful across screens. Carry one in-memory state object forwa
 ## Demo-readiness checklist (freeze build after this passes)
 
 - [ ] 01→06 clickable end-to-end with no dead ends
-- [ ] "Milestone" appears nowhere in the UI
+- [ ] Goal flow is two pages: set the goal, then break it into milestones → effort actions
 - [ ] Effort tab is pre-selected and visually primary on Screen 02
 - [ ] One worked-example action pre-seeded on Screen 02
 - [ ] Cadence includes "Whenever I can" and downstream copy honours it

@@ -8,7 +8,7 @@
 
 ## The one-sentence spine (build everything to serve this)
 
-> *Huddel was asking users to set outcome-based "milestones" when this cohort — students juggling work and study — reasons in effort and time. This redesign lets them plan goals as **effort-based actions at a cadence they choose**, recognises progress **calmly rather than through pressure mechanics**, and keeps the supportive "huddle" present but **safe and optional**.*
+> *Huddel's original onboarding set outcome-based milestones with no controllable effort layer and no schedule flexibility, so this cohort — students juggling work and study — stalled when a week blew up. This redesign keeps **proximal milestones** (Bandura & Schunk 1981 — they drive momentum and self-efficacy) but nests **effort-based actions** beneath them as the recognised unit of progress (Pham & Taylor 1999), at a user-chosen cadence — so effort counts even when outcomes slip.*
 
 If a design decision does not serve achievable, effort-based planning, it is out of scope.
 
@@ -50,7 +50,7 @@ Keep this table visible in the build; the marker rewards traceability.
 
 ## Non-negotiable design rules (apply on every screen)
 
-1. **The word "milestone" never appears anywhere in the UI.** Use "action," "daily action" only where the user has chosen daily cadence, or "goal."
+1. **A milestone is never a bare outcome deadline** — it is always paired with effort-based actions underneath it, and progress is recognised at the effort-action level. Use "milestone" for the proximal sub-goal layer and "action" for the controllable effort beneath it.
 2. **No streak counters, no badges, no points, no confetti-on-every-tap.** Recognition is calm and occasional (see Screen 05). Pressure mechanics punish this cohort's unpredictable schedules.
 3. **Cadence is user-chosen, never assumed.** Do not hard-code "daily." See Screen 03.
 4. **Setup never gates behind adding a supporter.** Screen 04 is always skippable.
