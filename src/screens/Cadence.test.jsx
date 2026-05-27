@@ -48,3 +48,8 @@ test('does not show reassurance after selecting "Most days"', async () => {
   await userEvent.click(screen.getByText('Most days'))
   expect(screen.queryByText(/Smart pick/)).not.toBeInTheDocument()
 })
+
+test('renders the Locke & Latham science note', () => {
+  renderWithApp(<Cadence />)
+  expect(screen.getByText(/Locke & Latham/)).toBeInTheDocument()
+})

@@ -35,6 +35,7 @@ export default function Cadence() {
     <div className="screenPad">
       <h1 className={styles.headline}>How often feels realistic?</h1>
       <p className={styles.helper}>No wrong answer. You can change this whenever your week changes.</p>
+      <p className="scienceNote">A cadence you&apos;ll actually keep protects commitment. — Locke &amp; Latham, 2002</p>
 
       <div className={styles.options}>
         {OPTIONS.map(opt => (
