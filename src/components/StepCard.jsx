@@ -3,12 +3,9 @@ import styles from './StepCard.module.css'
 
 const EFFORT_CHIPS = ['Write 400 words', 'Read for 30 min', 'Practice 20 min', 'Draft one section']
 
-export default function StepCard({ step, position, expanded, onToggle, onRename, onAddAction, onRemoveAction }) {
+export default function StepCard({ step, expanded, onToggle, onRename, onAddAction, onRemoveAction }) {
   const [customInput, setCustomInput] = useState('')
   const [showCustom, setShowCustom] = useState(false)
-
-  const displayName = step.name.trim() || `Step ${position}`
-  const count = step.actions.length
 
   function handleCustomSubmit(e) {
     e.preventDefault()
@@ -21,24 +18,29 @@ export default function StepCard({ step, position, expanded, onToggle, onRename,
 
   return (
     <div className={styles.card}>
-      <button type="button" className={styles.header} aria-expanded={expanded} onClick={onToggle}>
-        <span className={styles.headerName}>{displayName}</span>
-        <span className={styles.headerMeta}>
-          {expanded ? '▾' : `${count} action${count !== 1 ? 's' : ''} ▸`}
-        </span>
-      </button>
+      <div className={styles.header}>
+        <input
+          className={styles.nameInput}
+          type="text"
+          placeholder="Name this step — e.g. Research"
+          value={step.name}
+          onChange={e => onRename(e.target.value)}
+          aria-label="Step name"
+        />
+        <button
+          type="button"
+          className={styles.caret}
+          aria-expanded={expanded}
+          aria-label={expanded ? 'Hide actions' : 'Show actions'}
+          onClick={onToggle}
+        >
+          {expanded ? '▾' : '▸'}
+        </button>
+      </div>
 
       {expanded && (
         <div className={styles.body}>
-          <input
-            className={styles.nameInput}
-            type="text"
-            placeholder="Name this step (optional)"
-            value={step.name}
-            onChange={e => onRename(e.target.value)}
-          />
-
-          {count > 0 && (
+          {step.actions.length > 0 && (
             <ul className={styles.actionList}>
               {step.actions.map(action => (
                 <li key={action.id} className={styles.actionItem}>

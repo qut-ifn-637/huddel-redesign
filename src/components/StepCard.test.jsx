@@ -14,7 +14,6 @@ const noop = () => {}
 function renderCard(overrides = {}) {
   const props = {
     step: emptyStep,
-    position: 1,
     expanded: false,
     onToggle: noop,
     onRename: noop,
@@ -25,26 +24,39 @@ function renderCard(overrides = {}) {
   return render(<StepCard {...props} />)
 }
 
-test('shows "Step N" in the header when name is empty', () => {
-  renderCard({ step: emptyStep, position: 1 })
-  expect(screen.getByText('Step 1')).toBeInTheDocument()
+test('renders an editable name input as the headline', () => {
+  renderCard({ step: emptyStep })
+  expect(screen.getByRole('textbox', { name: /step name/i })).toBeInTheDocument()
 })
 
-test('shows the step name in the header when provided', () => {
-  renderCard({ step: filledStep, position: 2 })
-  expect(screen.getByText('Research')).toBeInTheDocument()
+test('the name input reflects the step name', () => {
+  renderCard({ step: filledStep })
+  expect(screen.getByRole('textbox', { name: /step name/i })).toHaveValue('Research')
 })
 
-test('clicking the header calls onToggle', async () => {
+test('shows the placeholder when the name is empty', () => {
+  renderCard({ step: emptyStep })
+  expect(screen.getByPlaceholderText(/name this step/i)).toBeInTheDocument()
+})
+
+test('editing the name input calls onRename', async () => {
+  const onRename = vi.fn()
+  renderCard({ onRename })
+  await userEvent.type(screen.getByRole('textbox', { name: /step name/i }), 'R')
+  expect(onRename).toHaveBeenCalled()
+})
+
+test('the caret button calls onToggle', async () => {
   const onToggle = vi.fn()
-  renderCard({ onToggle })
-  await userEvent.click(screen.getByText('Step 1'))
+  renderCard({ onToggle, expanded: false })
+  await userEvent.click(screen.getByRole('button', { name: /show actions/i }))
   expect(onToggle).toHaveBeenCalledTimes(1)
 })
 
-test('collapsed card hides the effort chips', () => {
+test('collapsed card hides the effort chips but keeps the name input', () => {
   renderCard({ expanded: false })
   expect(screen.queryByText('Write 400 words')).not.toBeInTheDocument()
+  expect(screen.getByRole('textbox', { name: /step name/i })).toBeInTheDocument()
 })
 
 test('expanded card shows effort chips and adds an effort action on tap', async () => {
@@ -69,13 +81,6 @@ test('custom action submits with source "custom"', async () => {
   await userEvent.type(screen.getByPlaceholderText(/describe your action/i), 'Outline intro')
   await userEvent.click(screen.getByRole('button', { name: /^add$/i }))
   expect(onAddAction).toHaveBeenCalledWith('Outline intro', 'custom')
-})
-
-test('editing the name field calls onRename', async () => {
-  const onRename = vi.fn()
-  renderCard({ expanded: true, onRename })
-  await userEvent.type(screen.getByPlaceholderText(/name this step/i), 'R')
-  expect(onRename).toHaveBeenCalled()
 })
 
 test('does not contain the word milestone', () => {

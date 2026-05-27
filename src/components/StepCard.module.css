@@ -6,44 +6,43 @@
 }
 
 .header {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: var(--space-3);
   background: var(--color-purple-tint);
-  color: var(--color-purple);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 14px;
-  border: none;
-  cursor: pointer;
-  text-align: left;
+  padding: 8px 10px 8px 14px;
 }
 
-.headerMeta {
+.nameInput {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-purple);
+  outline: none;
+  padding: 4px 0;
+}
+
+.nameInput::placeholder {
+  color: var(--color-body-gray);
   font-weight: 500;
-  font-size: 13px;
+}
+
+.caret {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--color-purple);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 8px;
+  line-height: 1;
 }
 
 .body {
   padding: 12px 14px;
-}
-
-.nameInput {
-  width: 100%;
-  padding: 10px 12px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  border: 1.5px solid #ddd;
-  border-radius: 12px;
-  outline: none;
-  margin-bottom: var(--space-4);
-  transition: border-color 0.15s;
-}
-
-.nameInput:focus {
-  border-color: var(--color-purple);
 }
 
 .actionList {

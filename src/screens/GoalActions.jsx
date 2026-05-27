@@ -52,7 +52,11 @@ export default function GoalActions() {
 
   return (
     <div className="screenPad">
+      <div className={styles.brand}>Huddel</div>
       <h1 className={styles.headline}>What are you working toward?</h1>
+      <p className={styles.subhead}>
+        Huddel plans around real life — so your goals bend when your week does.
+      </p>
 
       <input
         className={styles.goalInput}
@@ -68,11 +72,10 @@ export default function GoalActions() {
       </p>
 
       <div className={styles.steps}>
-        {steps.map((step, i) => (
+        {steps.map(step => (
           <StepCard
             key={step.id}
             step={step}
-            position={i + 1}
             expanded={expandedId === step.id}
             onToggle={() => toggleStep(step.id)}
             onRename={name => renameStep(step.id, name)}
