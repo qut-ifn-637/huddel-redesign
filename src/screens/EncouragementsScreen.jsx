@@ -25,7 +25,7 @@ export default function EncouragementsScreen() {
           <>
             <ul className={styles.list}>
               {received.map(e => (
-                <li key={e.id} className={styles.card}>
+                <li key={e.id} className={styles.cheerCard}>
                   <p className={styles.message}>&ldquo;{e.message}&rdquo;</p>
                   <p className={styles.meta}>{e.from} · {e.when}</p>
                 </li>
@@ -40,7 +40,7 @@ export default function EncouragementsScreen() {
         ) : (
           <ul className={styles.list}>
             {sent.map(e => (
-              <li key={e.id} className={styles.card}>
+              <li key={e.id} className={styles.cheerCard}>
                 <p className={styles.message}>&ldquo;{e.message}&rdquo;</p>
                 <p className={styles.meta}>To {e.to} · {e.when}</p>
               </li>

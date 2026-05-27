@@ -1,4 +1,4 @@
-.card { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
+.supportCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
 .quiet { background: var(--color-soft-blue); border: 1px dashed #e0e0e0; }
 
 .top { display: flex; justify-content: space-between; align-items: center; }

@@ -6,7 +6,7 @@ export default function SupportingCard({ person, onAct = () => {} }) {
 
   if (person.role === 'availability') {
     return (
-      <div className={`${styles.card} ${styles.quiet}`}>
+      <div className={`${styles.supportCard} ${styles.quiet}`}>
         <div className={styles.top}>
           <span className={styles.nameMuted}>{person.name}</span>
           <span className={styles.pillMuted}>{shareLabel}</span>
@@ -19,7 +19,7 @@ export default function SupportingCard({ person, onAct = () => {} }) {
 
   if (person.role === 'progress') {
     return (
-      <div className={styles.card}>
+      <div className={styles.supportCard}>
         <div className={styles.top}>
           <span className={styles.name}>{person.name}</span>
           <span className={styles.pillGreen}>{shareLabel}</span>
@@ -35,7 +35,7 @@ export default function SupportingCard({ person, onAct = () => {} }) {
 
   // role === 'all'
   return (
-    <div className={styles.card}>
+    <div className={styles.supportCard}>
       <div className={styles.top}>
         <span className={styles.name}>{person.name}</span>
         <span className={styles.pill}>{shareLabel}</span>

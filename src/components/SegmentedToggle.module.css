@@ -1,11 +1,11 @@
-.toggle {
+.segToggle {
   display: flex;
   gap: var(--space-7);
   margin-bottom: var(--space-6);
   border-bottom: 1px solid #ececec;
 }
 
-.segment {
+.segTab {
   border: none;
   background: none;
   font-family: var(--font-body);
@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.segment.active {
+.segTab.active {
   color: var(--color-purple);
   font-weight: 600;
   border-bottom-color: var(--color-purple);

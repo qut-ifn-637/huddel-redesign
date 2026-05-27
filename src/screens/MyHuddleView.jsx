@@ -31,7 +31,7 @@ export default function MyHuddleView() {
         {supporters.map(s => {
           const role = ROLES.find(r => r.value === s.role)
           return (
-            <li key={s.id ?? s.name} className={styles.card}>
+            <li key={s.id ?? s.name} className={styles.huddleCard}>
               <div className={styles.cardTop}>
                 <span className={styles.name}>{s.name}</span>
                 <span className={styles.pill}>{role?.label}</span>
@@ -56,7 +56,7 @@ export default function MyHuddleView() {
               <button
                 key={r.value}
                 type="button"
-                className={`${styles.chip} ${role === r.value ? 'active' : ''}`}
+                className={`${styles.huddleChip} ${role === r.value ? 'active' : ''}`}
                 onClick={() => setRole(r.value)}
               >
                 {r.label}
