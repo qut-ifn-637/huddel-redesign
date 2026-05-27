@@ -77,13 +77,17 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
 
           {showCustom && (
             <form className={styles.customForm} onSubmit={handleCustomSubmit}>
-              <input
+              <textarea
                 autoFocus
+                rows={1}
                 className={styles.customInput}
-                type="text"
                 placeholder="Describe your action…"
                 value={customInput}
-                onChange={e => setCustomInput(e.target.value)}
+                onChange={e => {
+                  setCustomInput(e.target.value)
+                  e.target.style.height = 'auto'
+                  e.target.style.height = `${e.target.scrollHeight}px`
+                }}
               />
               <button type="submit" className={styles.customAdd}>Add</button>
             </form>
