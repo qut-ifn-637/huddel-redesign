@@ -1,4 +1,4 @@
-.backdrop {
+.esBackdrop {
   position: fixed;
   inset: 0;
   background: rgba(6, 0, 0, 0.35);
@@ -9,7 +9,7 @@
   z-index: 20;
 }
 
-.sheet {
+.esSheet {
   width: 100%;
   max-width: 360px;
   background: var(--color-white);
@@ -21,8 +21,8 @@
   gap: var(--space-4);
 }
 
-.context { font-size: 14px; color: var(--color-black); }
-.presets { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-.preset { font-size: 12px; padding: 7px 13px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-beige); color: var(--color-body-gray); cursor: pointer; }
-.preset.active { background: var(--color-purple-tint); color: var(--color-purple); border-color: var(--color-purple); }
-.input { padding: 10px 14px; border: 1px solid #eee; border-radius: 12px; font-family: var(--font-body); font-size: 13px; }
+.esContext { font-size: 14px; color: var(--color-black); }
+.esPresets { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.esPreset { font-size: 12px; padding: 7px 13px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-beige); color: var(--color-body-gray); cursor: pointer; }
+.esPreset.active { background: var(--color-purple-tint); color: var(--color-purple); border-color: var(--color-purple); }
+.esInput { padding: 10px 14px; border: 1px solid #eee; border-radius: 12px; font-family: var(--font-body); font-size: 13px; }

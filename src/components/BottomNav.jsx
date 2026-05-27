@@ -10,15 +10,15 @@ const TABS = [
 export default function BottomNav() {
   const { activeTab, setTab } = useApp()
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.bnNav}>
       {TABS.map(tab => (
         <button
           key={tab.value}
           type="button"
-          className={`${styles.tab} ${activeTab === tab.value ? 'active' : ''}`}
+          className={`${styles.bnTab} ${activeTab === tab.value ? 'active' : ''}`}
           onClick={() => setTab(tab.value)}
         >
-          <span className={styles.icon} aria-hidden="true">{tab.icon}</span>
+          <span className={styles.bnIcon} aria-hidden="true">{tab.icon}</span>
           {tab.label}
         </button>
       ))}

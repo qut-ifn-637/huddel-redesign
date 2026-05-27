@@ -15,34 +15,34 @@ export default function EncouragementsScreen() {
 
   return (
     <div className="screenPad">
-      <h1 className={styles.title}>Encouragements</h1>
+      <h1 className={styles.ecTitle}>Encouragements</h1>
       <SegmentedToggle options={OPTIONS} value={view} onChange={setView} />
 
       {view === 'received' ? (
         received.length === 0 ? (
-          <p className={styles.empty}>Nothing yet — encouragement from your huddle shows up here.</p>
+          <p className={styles.ecEmpty}>Nothing yet — encouragement from your huddle shows up here.</p>
         ) : (
           <>
-            <ul className={styles.list}>
+            <ul className={styles.ecList}>
               {received.map(e => (
-                <li key={e.id} className={styles.cheerCard}>
-                  <p className={styles.message}>&ldquo;{e.message}&rdquo;</p>
-                  <p className={styles.meta}>{e.from} · {e.when}</p>
+                <li key={e.id} className={styles.ecCheerCard}>
+                  <p className={styles.ecMessage}>&ldquo;{e.message}&rdquo;</p>
+                  <p className={styles.ecMeta}>{e.from} · {e.when}</p>
                 </li>
               ))}
             </ul>
-            <p className={styles.footnote}>No counts. No streaks. Just the words.</p>
+            <p className={styles.ecFootnote}>No counts. No streaks. Just the words.</p>
           </>
         )
       ) : (
         sent.length === 0 ? (
-          <p className={styles.empty}>Nothing sent yet. Cheer someone from Supporting.</p>
+          <p className={styles.ecEmpty}>Nothing sent yet. Cheer someone from Supporting.</p>
         ) : (
-          <ul className={styles.list}>
+          <ul className={styles.ecList}>
             {sent.map(e => (
-              <li key={e.id} className={styles.cheerCard}>
-                <p className={styles.message}>&ldquo;{e.message}&rdquo;</p>
-                <p className={styles.meta}>To {e.to} · {e.when}</p>
+              <li key={e.id} className={styles.ecCheerCard}>
+                <p className={styles.ecMessage}>&ldquo;{e.message}&rdquo;</p>
+                <p className={styles.ecMeta}>To {e.to} · {e.when}</p>
               </li>
             ))}
           </ul>

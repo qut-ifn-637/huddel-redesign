@@ -15,7 +15,7 @@ export default function AppShell() {
   const { activeTab } = useApp()
   const Tab = TABS[activeTab] || ReturnView
   return (
-    <div className={`appShell ${styles.shell}`}>
+    <div className={`appShell ${styles.asShell}`}>
       <Tab />
       <BottomNav />
     </div>

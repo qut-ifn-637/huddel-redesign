@@ -10,15 +10,15 @@ export default function EncouragementSheet({ person, contextLine, presets, onClo
   const canSend = Boolean(message)
 
   return (
-    <div className={styles.backdrop} onClick={onClose}>
-      <div className={styles.sheet} onClick={e => e.stopPropagation()}>
-        <p className={styles.context}>{contextLine}</p>
-        <div className={styles.presets}>
+    <div className={styles.esBackdrop} onClick={onClose}>
+      <div className={styles.esSheet} onClick={e => e.stopPropagation()}>
+        <p className={styles.esContext}>{contextLine}</p>
+        <div className={styles.esPresets}>
           {presets.map(p => (
             <button
               key={p}
               type="button"
-              className={`${styles.preset} ${preset === p ? 'active' : ''}`}
+              className={`${styles.esPreset} ${preset === p ? 'active' : ''}`}
               onClick={() => setPreset(p)}
             >
               {p}
@@ -26,7 +26,7 @@ export default function EncouragementSheet({ person, contextLine, presets, onClo
           ))}
         </div>
         <input
-          className={styles.input}
+          className={styles.esInput}
           type="text"
           placeholder="Add your own words (optional)…"
           value={text}

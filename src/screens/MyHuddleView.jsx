@@ -21,52 +21,52 @@ export default function MyHuddleView() {
 
   return (
     <div>
-      <p className={styles.subhead}>You choose what each one sees.</p>
+      <p className={styles.mhSubhead}>You choose what each one sees.</p>
       {supporters.length === 0 && !adding && (
-        <p className={styles.empty}>No one yet — and that&apos;s completely fine.</p>
+        <p className={styles.mhEmpty}>No one yet — and that&apos;s completely fine.</p>
       )}
       <p className="scienceNote">You choose what each person sees — broadcasting an identity-goal too widely can sap the drive to pursue it. — Gollwitzer et al., 2009</p>
 
-      <ul className={styles.list}>
+      <ul className={styles.mhList}>
         {supporters.map(s => {
           const role = ROLES.find(r => r.value === s.role)
           return (
-            <li key={s.id ?? s.name} className={styles.huddleCard}>
-              <div className={styles.cardTop}>
-                <span className={styles.name}>{s.name}</span>
-                <span className={styles.pill}>{role?.label}</span>
+            <li key={s.id ?? s.name} className={styles.mhHuddleCard}>
+              <div className={styles.mhCardTop}>
+                <span className={styles.mhName}>{s.name}</span>
+                <span className={styles.mhPill}>{role?.label}</span>
               </div>
-              <p className={styles.sees}>{role?.sees}</p>
+              <p className={styles.mhSees}>{role?.sees}</p>
             </li>
           )
         })}
       </ul>
 
       {adding ? (
-        <div className={styles.addForm}>
+        <div className={styles.mhAddForm}>
           <input
-            className={styles.input}
+            className={styles.mhInput}
             type="text"
             placeholder="Name or contact"
             value={name}
             onChange={e => setName(e.target.value)}
           />
-          <div className={styles.roleChips}>
+          <div className={styles.mhRoleChips}>
             {ROLES.map(r => (
               <button
                 key={r.value}
                 type="button"
-                className={`${styles.huddleChip} ${role === r.value ? 'active' : ''}`}
+                className={`${styles.mhChip} ${role === r.value ? 'active' : ''}`}
                 onClick={() => setRole(r.value)}
               >
                 {r.label}
               </button>
             ))}
           </div>
-          <button type="button" className={styles.addBtn} onClick={handleAdd} disabled={!name.trim()}>Add</button>
+          <button type="button" className={styles.mhAddBtn} onClick={handleAdd} disabled={!name.trim()}>Add</button>
         </div>
       ) : (
-        <button type="button" className={styles.addLink} onClick={() => setAdding(true)}>+ Add someone</button>
+        <button type="button" className={styles.mhAddLink} onClick={() => setAdding(true)}>+ Add someone</button>
       )}
     </div>
   )

@@ -6,48 +6,48 @@ export default function SupportingCard({ person, onAct = () => {} }) {
 
   if (person.role === 'availability') {
     return (
-      <div className={`${styles.supportCard} ${styles.quiet}`}>
-        <div className={styles.top}>
-          <span className={styles.nameMuted}>{person.name}</span>
-          <span className={styles.pillMuted}>{shareLabel}</span>
+      <div className={`${styles.scCard} ${styles.scQuiet}`}>
+        <div className={styles.scTop}>
+          <span className={styles.scNameMuted}>{person.name}</span>
+          <span className={styles.scPillMuted}>{shareLabel}</span>
         </div>
-        <p className={styles.spaceLine}>{person.status} — give them space.</p>
-        <p className={styles.footnote}>No goal shared. Nothing to do here, and that&apos;s the point.</p>
+        <p className={styles.scSpaceLine}>{person.status} — give them space.</p>
+        <p className={styles.scFootnote}>No goal shared. Nothing to do here, and that&apos;s the point.</p>
       </div>
     )
   }
 
   if (person.role === 'progress') {
     return (
-      <div className={styles.supportCard}>
-        <div className={styles.top}>
-          <span className={styles.name}>{person.name}</span>
-          <span className={styles.pillGreen}>{shareLabel}</span>
+      <div className={styles.scCard}>
+        <div className={styles.scTop}>
+          <span className={styles.scName}>{person.name}</span>
+          <span className={styles.scPillGreen}>{shareLabel}</span>
         </div>
-        <p className={styles.win}>● {person.win}</p>
-        <button type="button" className={styles.primaryAction} onClick={() => onAct(person, 'cheer')}>
+        <p className={styles.scWin}>● {person.win}</p>
+        <button type="button" className={styles.scPrimaryAction} onClick={() => onAct(person, 'cheer')}>
           Cheer this win
         </button>
-        <p className={styles.footnote}>You see wins, not the hard days.</p>
+        <p className={styles.scFootnote}>You see wins, not the hard days.</p>
       </div>
     )
   }
 
   // role === 'all'
   return (
-    <div className={styles.supportCard}>
-      <div className={styles.top}>
-        <span className={styles.name}>{person.name}</span>
-        <span className={styles.pill}>{shareLabel}</span>
+    <div className={styles.scCard}>
+      <div className={styles.scTop}>
+        <span className={styles.scName}>{person.name}</span>
+        <span className={styles.scPill}>{shareLabel}</span>
       </div>
-      <p className={styles.goal}>{person.goal}</p>
-      <p className={styles.progress}>● {person.progress}</p>
-      {person.struggleFlag && <p className={styles.struggle}>○ Flagged a rough week</p>}
-      <div className={styles.actions}>
-        <button type="button" className={styles.primaryAction} onClick={() => onAct(person, 'cheer')}>
+      <p className={styles.scGoal}>{person.goal}</p>
+      <p className={styles.scProgress}>● {person.progress}</p>
+      {person.struggleFlag && <p className={styles.scStruggle}>○ Flagged a rough week</p>}
+      <div className={styles.scActions}>
+        <button type="button" className={styles.scPrimaryAction} onClick={() => onAct(person, 'cheer')}>
           Send encouragement
         </button>
-        <button type="button" className={styles.secondaryAction} onClick={() => onAct(person, 'checkin')}>
+        <button type="button" className={styles.scSecondaryAction} onClick={() => onAct(person, 'checkin')}>
           Check in
         </button>
       </div>

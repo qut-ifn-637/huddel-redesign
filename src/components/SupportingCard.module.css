@@ -1,21 +1,21 @@
-.supportCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
-.quiet { background: var(--color-soft-blue); border: 1px dashed #e0e0e0; }
+.scCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
+.scQuiet { background: var(--color-soft-blue); border: 1px dashed #e0e0e0; }
 
-.top { display: flex; justify-content: space-between; align-items: center; }
-.name { font-weight: 600; color: var(--color-black); }
-.nameMuted { font-weight: 600; color: var(--color-body-gray); }
+.scTop { display: flex; justify-content: space-between; align-items: center; }
+.scName { font-weight: 600; color: var(--color-black); }
+.scNameMuted { font-weight: 600; color: var(--color-body-gray); }
 
-.pill { font-size: 11px; background: var(--color-purple-tint); color: var(--color-purple); padding: 3px 9px; border-radius: 10px; }
-.pillGreen { font-size: 11px; background: #e7f7ee; color: #2c9e63; padding: 3px 9px; border-radius: 10px; }
-.pillMuted { font-size: 11px; background: #eee; color: var(--color-body-gray); padding: 3px 9px; border-radius: 10px; }
+.scPill { font-size: 11px; background: var(--color-purple-tint); color: var(--color-purple); padding: 3px 9px; border-radius: 10px; }
+.scPillGreen { font-size: 11px; background: #e7f7ee; color: #2c9e63; padding: 3px 9px; border-radius: 10px; }
+.scPillMuted { font-size: 11px; background: #eee; color: var(--color-body-gray); padding: 3px 9px; border-radius: 10px; }
 
-.goal { font-size: 14px; color: var(--color-black); margin: var(--space-3) 0 var(--space-2); }
-.progress { font-size: 13px; color: #2c9e63; }
-.struggle { font-size: 13px; color: #a05a2c; margin-top: 2px; }
-.win { font-size: 13px; color: #2c9e63; margin: var(--space-3) 0; }
-.spaceLine { font-size: 13px; color: var(--color-body-gray); margin: var(--space-3) 0 var(--space-2); }
-.footnote { font-size: 11px; color: #999; margin-top: var(--space-3); }
+.scGoal { font-size: 14px; color: var(--color-black); margin: var(--space-3) 0 var(--space-2); }
+.scProgress { font-size: 13px; color: #2c9e63; }
+.scStruggle { font-size: 13px; color: #a05a2c; margin-top: 2px; }
+.scWin { font-size: 13px; color: #2c9e63; margin: var(--space-3) 0; }
+.scSpaceLine { font-size: 13px; color: var(--color-body-gray); margin: var(--space-3) 0 var(--space-2); }
+.scFootnote { font-size: 11px; color: #999; margin-top: var(--space-3); }
 
-.actions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
-.primaryAction { background: var(--color-purple); color: var(--color-white); border: none; border-radius: 14px; font-family: var(--font-body); font-size: 12px; font-weight: 600; padding: 7px 14px; cursor: pointer; }
-.secondaryAction { background: var(--color-white); color: var(--color-body-gray); border: 1px solid #ddd; border-radius: 14px; font-family: var(--font-body); font-size: 12px; padding: 7px 14px; cursor: pointer; }
+.scActions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+.scPrimaryAction { background: var(--color-purple); color: var(--color-white); border: none; border-radius: 14px; font-family: var(--font-body); font-size: 12px; font-weight: 600; padding: 7px 14px; cursor: pointer; }
+.scSecondaryAction { background: var(--color-white); color: var(--color-body-gray); border: 1px solid #ddd; border-radius: 14px; font-family: var(--font-body); font-size: 12px; padding: 7px 14px; cursor: pointer; }

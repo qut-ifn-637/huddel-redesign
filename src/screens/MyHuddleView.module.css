@@ -1,20 +1,20 @@
-.subhead { font-size: 14px; color: var(--color-body-gray); margin-bottom: var(--space-3); }
-.empty   { font-size: 15px; color: var(--color-body-gray); margin: var(--space-5) 0; }
+.mhSubhead { font-size: 14px; color: var(--color-body-gray); margin-bottom: var(--space-3); }
+.mhEmpty   { font-size: 15px; color: var(--color-body-gray); margin: var(--space-5) 0; }
 
-.list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); }
+.mhList { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); }
 
-.huddleCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
-.cardTop { display: flex; justify-content: space-between; align-items: center; }
-.name { font-weight: 600; color: var(--color-black); }
-.pill { font-size: 11px; background: var(--color-purple-tint); color: var(--color-purple); padding: 3px 9px; border-radius: 10px; }
-.sees { font-size: 13px; color: var(--color-body-gray); margin-top: var(--space-2); }
+.mhHuddleCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
+.mhCardTop { display: flex; justify-content: space-between; align-items: center; }
+.mhName { font-weight: 600; color: var(--color-black); }
+.mhPill { font-size: 11px; background: var(--color-purple-tint); color: var(--color-purple); padding: 3px 9px; border-radius: 10px; }
+.mhSees { font-size: 13px; color: var(--color-body-gray); margin-top: var(--space-2); }
 
-.addLink { display: block; width: 100%; text-align: center; background: none; border: none; color: var(--color-purple); font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; padding: var(--space-3); }
+.mhAddLink { display: block; width: 100%; text-align: center; background: none; border: none; color: var(--color-purple); font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; padding: var(--space-3); }
 
-.addForm { background: var(--color-soft-blue); border-radius: var(--radius-card); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
-.input { padding: 10px 14px; border: 1px solid #ddd; border-radius: 12px; font-family: var(--font-body); font-size: 14px; }
-.roleChips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-.huddleChip { font-size: 12px; padding: 6px 12px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-white); color: var(--color-body-gray); cursor: pointer; }
-.huddleChip.active { border-color: var(--color-purple); background: var(--color-purple-tint); color: var(--color-purple); }
-.addBtn { padding: 10px; border: none; border-radius: var(--radius-button); background: var(--color-purple); color: var(--color-white); font-family: var(--font-body); font-weight: 600; cursor: pointer; }
-.addBtn:disabled { opacity: 0.45; cursor: default; }
+.mhAddForm { background: var(--color-soft-blue); border-radius: var(--radius-card); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+.mhInput { padding: 10px 14px; border: 1px solid #ddd; border-radius: 12px; font-family: var(--font-body); font-size: 14px; }
+.mhRoleChips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.mhChip { font-size: 12px; padding: 6px 12px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-white); color: var(--color-body-gray); cursor: pointer; }
+.mhChip.active { border-color: var(--color-purple); background: var(--color-purple-tint); color: var(--color-purple); }
+.mhAddBtn { padding: 10px; border: none; border-radius: var(--radius-button); background: var(--color-purple); color: var(--color-white); font-family: var(--font-body); font-weight: 600; cursor: pointer; }
+.mhAddBtn:disabled { opacity: 0.45; cursor: default; }

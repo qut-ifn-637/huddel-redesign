@@ -32,13 +32,13 @@ export default function SupportingView() {
 
   return (
     <div>
-      <p className={styles.subhead}>You see what each person chose to share. Nothing more.</p>
-      <p className={styles.count}>{people.length} people in your corner</p>
+      <p className={styles.svSubhead}>You see what each person chose to share. Nothing more.</p>
+      <p className={styles.svCount}>{people.length} people in your corner</p>
       <p className="scienceNote">You see only what each person chose — visible support can burden more than it helps. — Bolger, Zuckerman &amp; Kessler, 2000</p>
 
-      {confirmation && <p className={styles.confirmation}>Sent to {confirmation}.</p>}
+      {confirmation && <p className={styles.svConfirmation}>Sent to {confirmation}.</p>}
 
-      <div className={styles.list}>
+      <div className={styles.svList}>
         {people.map(person => (
           <SupportingCard key={person.id} person={person} onAct={openSheet} />
         ))}
