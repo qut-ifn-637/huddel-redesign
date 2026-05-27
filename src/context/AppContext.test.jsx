@@ -63,3 +63,34 @@ test('allActions flattens actions across all milestones', () => {
   ]
   expect(allActions(milestones).map(a => a.id)).toEqual(['a1', 'a2', 'a3'])
 })
+
+test('goBack returns to the previous screen after navigating forward', () => {
+  vi.useFakeTimers()
+  const { result } = renderHook(() => useApp(), { wrapper })
+  act(() => { result.current.goTo('cadence') })
+  act(() => { vi.advanceTimersByTime(150) })
+  expect(result.current.currentScreen).toBe('cadence')
+  act(() => { result.current.goBack() })
+  act(() => { vi.advanceTimersByTime(150) })
+  expect(result.current.currentScreen).toBe('goal')
+  vi.useRealTimers()
+})
+
+test('canGoBack is false initially and true after navigating forward', () => {
+  vi.useFakeTimers()
+  const { result } = renderHook(() => useApp(), { wrapper })
+  expect(result.current.canGoBack).toBe(false)
+  act(() => { result.current.goTo('cadence') })
+  act(() => { vi.advanceTimersByTime(150) })
+  expect(result.current.canGoBack).toBe(true)
+  vi.useRealTimers()
+})
+
+test('goBack is a no-op when there is no history', () => {
+  vi.useFakeTimers()
+  const { result } = renderHook(() => useApp(), { wrapper })
+  act(() => { result.current.goBack() })
+  act(() => { vi.advanceTimersByTime(150) })
+  expect(result.current.currentScreen).toBe('goal')
+  vi.useRealTimers()
+})

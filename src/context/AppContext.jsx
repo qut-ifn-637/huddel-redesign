@@ -19,9 +19,10 @@ export function allActions(milestones) {
 export function AppProvider({ children, initialStateOverrides = {} }) {
   const [state, setState] = useState({ ...defaultState, ...initialStateOverrides })
   const [currentScreen, setCurrentScreen] = useState('goal')
+  const [history, setHistory] = useState([])
   const [fading, setFading] = useState(false)
 
-  function goTo(screenId) {
+  function navigate(screenId) {
     setFading(true)
     setTimeout(() => {
       setCurrentScreen(screenId)
@@ -29,12 +30,26 @@ export function AppProvider({ children, initialStateOverrides = {} }) {
     }, 150)
   }
 
+  function goTo(screenId) {
+    setHistory(h => [...h, currentScreen])
+    navigate(screenId)
+  }
+
+  function goBack() {
+    if (history.length === 0) return
+    const prev = history[history.length - 1]
+    setHistory(h => h.slice(0, -1))
+    navigate(prev)
+  }
+
   function updateState(updates) {
     setState(prev => ({ ...prev, ...updates }))
   }
 
+  const canGoBack = history.length > 0
+
   return (
-    <AppContext.Provider value={{ state, currentScreen, fading, goTo, updateState }}>
+    <AppContext.Provider value={{ state, currentScreen, fading, goTo, goBack, canGoBack, updateState }}>
       {children}
     </AppContext.Provider>
   )
