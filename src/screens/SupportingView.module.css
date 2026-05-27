@@ -1,0 +1,4 @@
+.subhead { font-size: 14px; color: var(--color-body-gray); margin-bottom: var(--space-2); }
+.count { font-family: var(--font-heading); font-size: 17px; color: var(--color-black); margin-bottom: var(--space-2); }
+.confirmation { font-size: 13px; font-weight: 600; color: var(--color-purple); margin-bottom: var(--space-3); }
+.list { display: flex; flex-direction: column; gap: var(--space-3); }
