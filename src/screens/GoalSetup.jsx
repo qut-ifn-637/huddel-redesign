@@ -15,7 +15,7 @@ export default function GoalSetup() {
   return (
     <div className="screenPad">
       <div className={styles.brand}>Huddel</div>
-      <h1 className={styles.headline}>What are you working toward?</h1>
+      <h1 className={styles.headline}>What goal are you working on?</h1>
       <p className={styles.subhead}>
         Huddel plans around real life — so your goals bend when your week does.
       </p>

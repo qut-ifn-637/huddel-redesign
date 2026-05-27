@@ -6,7 +6,7 @@ import GoalSetup from './GoalSetup'
 test('renders brand, headline, and value-prop subhead', () => {
   renderWithApp(<GoalSetup />)
   expect(screen.getByText('Huddel')).toBeInTheDocument()
-  expect(screen.getByText('What are you working toward?')).toBeInTheDocument()
+  expect(screen.getByText('What goal are you working on?')).toBeInTheDocument()
   expect(screen.getByText(/Huddel plans around real life/)).toBeInTheDocument()
 })
 
