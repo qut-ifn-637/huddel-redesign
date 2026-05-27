@@ -24,3 +24,11 @@ test('Sent lists messages the user has sent', async () => {
   expect(screen.getByText(/Keep going!/)).toBeInTheDocument()
   expect(screen.getByText(/To Sam · just now/)).toBeInTheDocument()
 })
+
+test('Received empty shows a gentle prompt and no footnote', () => {
+  renderWithApp(<EncouragementsScreen />, { initialStateOverrides: {
+    encouragements: { received: [], sent: [] },
+  } })
+  expect(screen.getByText('Nothing yet — encouragement from your huddle shows up here.')).toBeInTheDocument()
+  expect(screen.queryByText('No counts. No streaks. Just the words.')).not.toBeInTheDocument()
+})
