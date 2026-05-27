@@ -4,8 +4,8 @@ import Recognition from './Recognition'
 
 const seedState = {
   goalName: 'Finish my essay',
-  steps: [
-    { id: 'step-1', name: 'Research', actions: [
+  milestones: [
+    { id: 'milestone-1', name: 'Research', actions: [
       { id: 'seed-1', label: 'Write 400 words', source: 'effort', completed: false },
     ]},
   ],
@@ -22,23 +22,23 @@ test('renders the first incomplete action as a CompleteControl', () => {
   expect(screen.getByText('Write 400 words')).toBeInTheDocument()
 })
 
-test('shows the step label when the owning step is named', () => {
+test('shows the milestone label when the owning milestone is named', () => {
   renderWithApp(<Recognition />, { initialStateOverrides: seedState })
   expect(screen.getByText('Research')).toBeInTheDocument()
 })
 
-test('omits the step label when the owning step is unnamed', () => {
-  const unnamed = { ...seedState, steps: [{ id: 'step-1', name: '', actions: seedState.steps[0].actions }] }
+test('omits the milestone label when the owning milestone is unnamed', () => {
+  const unnamed = { ...seedState, milestones: [{ id: 'milestone-1', name: '', actions: seedState.milestones[0].actions }] }
   renderWithApp(<Recognition />, { initialStateOverrides: unnamed })
   expect(screen.queryByText('Research')).not.toBeInTheDocument()
 })
 
-test('picks the first INCOMPLETE action across steps', () => {
+test('picks the first INCOMPLETE action across milestones', () => {
   const multi = {
     ...seedState,
-    steps: [
-      { id: 'step-1', name: 'Research', actions: [{ id: 'a1', label: 'Read 3 sources', source: 'effort', completed: true }] },
-      { id: 'step-2', name: 'Draft', actions: [{ id: 'a2', label: 'Write 400 words', source: 'effort', completed: false }] },
+    milestones: [
+      { id: 'm1', name: 'Research', actions: [{ id: 'a1', label: 'Read 3 sources', source: 'effort', completed: true }] },
+      { id: 'm2', name: 'Draft', actions: [{ id: 'a2', label: 'Write 400 words', source: 'effort', completed: false }] },
     ],
   }
   renderWithApp(<Recognition />, { initialStateOverrides: multi })
@@ -65,7 +65,11 @@ test('shows when_i_can continue copy when cadence is when_i_can', () => {
   vi.useRealTimers()
 })
 
-test('does not contain the word milestone', () => {
+test('shows the Bandura & Schunk science note after completing', () => {
+  vi.useFakeTimers()
   renderWithApp(<Recognition />, { initialStateOverrides: seedState })
-  expect(document.body.textContent.toLowerCase()).not.toContain('milestone')
+  const control = screen.getByRole('button', { name: /mark complete/i })
+  act(() => { fireEvent.click(control) })
+  expect(screen.getByText(/builds the confidence/i)).toBeInTheDocument()
+  vi.useRealTimers()
 })
