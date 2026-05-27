@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { renderWithApp } from '../test/helpers'
 import ReturnView from './ReturnView'
 
@@ -55,9 +56,17 @@ test('completed action is shown ticked', () => {
   expect(completedCircles.length).toBeGreaterThanOrEqual(1)
 })
 
-test('shows supporter line by name when supporters is non-empty', () => {
-  renderWithApp(<ReturnView />, { initialStateOverrides: { ...baseState, supporters: [{ name: 'Alex', role: 'single_goal' }] } })
-  expect(screen.getByText(/Alex can cheer this on/i)).toBeInTheDocument()
+test('shows the "Your corner" block with what each supporter sees', () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: { ...baseState, supporters: [{ name: 'Alex', role: 'progress' }] } })
+  expect(screen.getByText('Your corner')).toBeInTheDocument()
+  expect(screen.getByText('Alex')).toBeInTheDocument()
+  expect(screen.getByText(/sees your progress/i)).toBeInTheDocument()
+})
+
+test('the share button confirms after tapping', async () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: { ...baseState, supporters: [{ name: 'Alex', role: 'progress' }] } })
+  await userEvent.click(screen.getByRole('button', { name: /share this week's progress/i }))
+  expect(screen.getByText(/Shared — your corner can cheer you on/i)).toBeInTheDocument()
 })
 
 test('shows soft re-offer when no supporters', () => {

@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { useApp, allActions } from '../context/AppContext'
 import CompleteControl from '../components/CompleteControl'
 import PrimaryButton from '../components/PrimaryButton'
+import { ROLES } from '../data/roles'
 import styles from './ReturnView.module.css'
 
 export default function ReturnView() {
   const { state, updateState, goTo } = useApp()
   const [milestones, setMilestones] = useState(state.milestones)
+  const [shared, setShared] = useState(false)
 
   const flat = allActions(milestones)
   const completedCount = flat.filter(a => a.completed).length
@@ -27,7 +29,7 @@ export default function ReturnView() {
   }
 
   const showHeaders = milestones.length > 1 || milestones.some(m => m.name.trim())
-  const primarySupporterName = state.supporters[0]?.name || null
+  const supporters = state.supporters
 
   return (
     <div className="screenPad">
@@ -64,10 +66,28 @@ export default function ReturnView() {
         })}
       </div>
 
-      {state.supporters.length > 0 ? (
-        <p className={styles.supporterLine}>
-          {primarySupporterName} can cheer this on.
-        </p>
+      {supporters.length > 0 ? (
+        <div className={styles.corner}>
+          <p className={styles.cornerHeader}>Your corner</p>
+          <ul className={styles.cornerList}>
+            {supporters.map((s, i) => {
+              const sees = ROLES.find(r => r.value === s.role)?.sees || 'sees your progress'
+              return (
+                <li key={i} className={styles.cornerItem}>
+                  <span className={styles.cornerName}>{s.name}</span>
+                  <span className={styles.cornerSees}>{sees}</span>
+                </li>
+              )
+            })}
+          </ul>
+          {shared ? (
+            <p className={styles.shared}>Shared — your corner can cheer you on ✓</p>
+          ) : (
+            <button type="button" className={styles.shareBtn} onClick={() => setShared(true)}>
+              Share this week&apos;s progress
+            </button>
+          )}
+        </div>
       ) : (
         <button type="button" className={styles.reOffer} onClick={() => goTo('offered-social')}>
           Want to add someone to cheer you on? (optional)
