@@ -14,7 +14,7 @@ export default function OfferedSocial() {
 
   function handleAdd() {
     if (name.trim() && selectedRole) {
-      setSupporters(prev => [...prev, { name: name.trim(), role: selectedRole }])
+      setSupporters(prev => [...prev, { id: `sup-${Date.now()}-${prev.length}`, name: name.trim(), role: selectedRole }])
       setName('')
       setSelectedRole('progress')
     }

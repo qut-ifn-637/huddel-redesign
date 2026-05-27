@@ -25,7 +25,7 @@ export default function Recognition() {
     applyCount(actionId, a => (a.kind === 'once' ? 1 : (a.count || 0) + 1))
     if (!completedAny) {
       setCompletedAny(true)
-      setTimeout(() => setShowContinue(true), 1500)
+      setShowContinue(true)
     }
   }
 

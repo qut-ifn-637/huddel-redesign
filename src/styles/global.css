@@ -88,6 +88,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  pointer-events: none; /* transparent gradient region must not capture taps on content beneath */
+}
+
+.bottomActions > * {
+  pointer-events: auto;
 }
 
 /* ── Utility: cited science note (subtle, never competes with primary content) ── */

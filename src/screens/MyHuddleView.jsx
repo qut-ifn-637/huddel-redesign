@@ -31,7 +31,7 @@ export default function MyHuddleView() {
         {supporters.map(s => {
           const role = ROLES.find(r => r.value === s.role)
           return (
-            <li key={s.id} className={styles.card}>
+            <li key={s.id ?? s.name} className={styles.card}>
               <div className={styles.cardTop}>
                 <span className={styles.name}>{s.name}</span>
                 <span className={styles.pill}>{role?.label}</span>
