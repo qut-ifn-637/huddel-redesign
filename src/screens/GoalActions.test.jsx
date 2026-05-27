@@ -5,10 +5,10 @@ import GoalActions from './GoalActions'
 
 const seed = { goalName: 'Finish my essay' }
 
-test('shows the goal name and a back-to-goal affordance', () => {
+test('shows the goal name and a back control', () => {
   renderWithApp(<GoalActions />, { initialStateOverrides: seed })
   expect(screen.getByText('Finish my essay')).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /edit goal/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /go back/i })).toBeInTheDocument()
 })
 
 test('renders the "Break it into milestones" section', () => {

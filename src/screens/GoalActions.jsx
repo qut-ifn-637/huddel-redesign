@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useApp, allActions } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
+import BackButton from '../components/BackButton'
 import MilestoneCard from '../components/MilestoneCard'
 import styles from './GoalActions.module.css'
 
@@ -8,7 +9,7 @@ let nextMilestone = 2
 let nextAction = 100
 
 export default function GoalActions() {
-  const { state, updateState, goTo } = useApp()
+  const { state, updateState, goTo, goBack } = useApp()
   const [milestones, setMilestones] = useState(state.milestones)
   const [expandedId, setExpandedId] = useState(state.milestones[0]?.id ?? null)
 
@@ -47,14 +48,18 @@ export default function GoalActions() {
     goTo('cadence')
   }
 
+  function handleBack() {
+    updateState({ milestones })
+    goBack()
+  }
+
   const canAdvance = allActions(milestones).length > 0
 
   return (
     <div className="screenPad">
-      <button type="button" className={styles.back} onClick={() => goTo('goal')}>← Edit goal</button>
-      <h1 className={styles.goalHeading}>{state.goalName}</h1>
-
-      <p className={styles.sectionLabel}>Break it into milestones</p>
+      <BackButton onClick={handleBack} />
+      {state.goalName && <p className={styles.eyebrow}>{state.goalName}</p>}
+      <h1 className={styles.heading}>Break it into milestones</h1>
       <p className="scienceNote">Near-term milestones build momentum and confidence. — Bandura &amp; Schunk, 1981</p>
       <p className={styles.helper}>
         Optional — add as many as help, or keep just one. Each milestone holds the effort actions you&apos;ll actually do.

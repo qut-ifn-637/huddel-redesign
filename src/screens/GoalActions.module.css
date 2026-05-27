@@ -1,27 +1,16 @@
-.back {
-  background: none;
-  border: none;
-  color: var(--color-purple);
-  font-family: var(--font-body);
-  font-size: 14px;
+.eyebrow {
+  font-size: 13px;
   font-weight: 500;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: var(--space-4);
+  color: var(--color-body-gray);
+  margin-bottom: var(--space-2);
 }
 
-.goalHeading {
+.heading {
   font-family: var(--font-heading);
   font-size: 28px;
   font-weight: 600;
   color: var(--color-black);
   line-height: 1.2;
-  margin-bottom: var(--space-6);
-}
-
-.sectionLabel {
-  font-weight: 600;
-  font-size: 16px;
   margin-bottom: var(--space-2);
 }
 
