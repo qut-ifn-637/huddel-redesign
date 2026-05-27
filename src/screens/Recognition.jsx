@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useApp } from '../context/AppContext'
+import { useApp, allActions } from '../context/AppContext'
 import CompleteControl from '../components/CompleteControl'
 import styles from './Recognition.module.css'
 
@@ -8,15 +8,24 @@ export default function Recognition() {
   const [completed, setCompleted] = useState(false)
   const [showContinue, setShowContinue] = useState(false)
 
-  const firstAction = state.actions[0]
+  const flat = allActions(state.steps)
+  // Freeze the target action on mount so completing it doesn't make the label
+  // jump to the next incomplete action mid-screen.
+  const [targetId] = useState(() => {
+    const target = flat.find(a => !a.completed) || flat[0]
+    return target ? target.id : null
+  })
+  const firstAction = flat.find(a => a.id === targetId) || flat[0]
+  const ownerStep = state.steps.find(s => s.actions.some(a => a.id === firstAction.id))
+  const stepLabel = ownerStep && ownerStep.name.trim() ? ownerStep.name.trim() : null
 
   function handleComplete() {
-    const updatedActions = state.actions.map(a =>
-      a.id === firstAction.id ? { ...a, completed: true } : a
-    )
-    updateState({ actions: updatedActions })
+    const updatedSteps = state.steps.map(s => ({
+      ...s,
+      actions: s.actions.map(a => (a.id === firstAction.id ? { ...a, completed: true } : a)),
+    }))
+    updateState({ steps: updatedSteps })
     setCompleted(true)
-
     setTimeout(() => setShowContinue(true), 1500)
   }
 
@@ -27,6 +36,8 @@ export default function Recognition() {
   return (
     <div className="screenPad">
       <h1 className={styles.headline}>You&apos;re set up. Try it once.</h1>
+
+      {stepLabel && <p className={styles.stepLabel}>{stepLabel}</p>}
 
       <CompleteControl
         actionId={firstAction.id}
@@ -46,11 +57,7 @@ export default function Recognition() {
       )}
 
       {showContinue && (
-        <button
-          type="button"
-          className={styles.continueBtn}
-          onClick={() => goTo('return-view')}
-        >
+        <button type="button" className={styles.continueBtn} onClick={() => goTo('return-view')}>
           {continueLabel}
         </button>
       )}

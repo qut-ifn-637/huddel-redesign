@@ -1,3 +1,10 @@
+.stepLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-purple);
+  margin-bottom: var(--space-3);
+}
+
 .headline {
   font-family: var(--font-heading);
   font-size: 26px;
