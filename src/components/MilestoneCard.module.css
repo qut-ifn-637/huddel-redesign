@@ -8,21 +8,26 @@
 .header {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  background: var(--color-purple-tint);
-  padding: 8px 10px 8px 14px;
+  gap: var(--space-2);
+  padding: 10px 8px 10px 14px;
 }
 
 .nameInput {
   flex: 1;
+  min-width: 0;
   background: none;
   border: none;
+  border-bottom: 1.5px solid transparent;
   font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 600;
   color: var(--color-purple);
   outline: none;
-  padding: 4px 0;
+  padding: 6px 2px;
+}
+
+.nameInput:focus {
+  border-bottom-color: var(--color-purple);
 }
 
 .nameInput::placeholder {
@@ -43,6 +48,7 @@
 
 .body {
   padding: 12px 14px;
+  border-top: 1px solid #f0ecff;
 }
 
 .actionList {
@@ -81,30 +87,49 @@
 }
 
 .chips {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
 }
 
 .chip {
-  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   background: var(--color-beige);
   color: var(--color-black);
-  border: none;
-  border-radius: 20px;
+  border: 1.5px solid #e6e0ff;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.1s ease;
+  text-align: center;
+  transition: background 0.1s ease, border-color 0.1s ease;
+}
+
+.chip::before {
+  content: '+';
+  color: var(--color-purple);
+  font-weight: 700;
 }
 
 .chip:active {
   background: var(--color-purple-tint);
+  border-color: var(--color-purple);
 }
 
 .chipCustom {
+  grid-column: 1 / -1;
+  background: none;
+  border-style: dashed;
   color: var(--color-purple);
+}
+
+.chipCustom::before {
+  content: none;
 }
 
 .customForm {

@@ -22,7 +22,7 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
         <input
           className={styles.nameInput}
           type="text"
-          placeholder="Name this milestone — e.g. Research"
+          placeholder="Name this milestone"
           value={milestone.name}
           onChange={e => onRename(e.target.value)}
           aria-label="Milestone name"
