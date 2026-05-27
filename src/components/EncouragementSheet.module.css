@@ -1,0 +1,28 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 390px;
+  background: rgba(6, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-end;
+  z-index: 20;
+}
+
+.sheet {
+  width: 100%;
+  background: var(--color-white);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  border-top: 3px solid var(--color-purple);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.context { font-size: 14px; color: var(--color-black); }
+.presets { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.preset { font-size: 12px; padding: 7px 13px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-beige); color: var(--color-body-gray); cursor: pointer; }
+.preset.active { background: var(--color-purple-tint); color: var(--color-purple); border-color: var(--color-purple); }
+.input { padding: 10px 14px; border: 1px solid #eee; border-radius: 12px; font-family: var(--font-body); font-size: 13px; }
