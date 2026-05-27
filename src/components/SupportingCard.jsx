@@ -1,7 +1,7 @@
 import { ROLES } from '../data/roles'
 import styles from './SupportingCard.module.css'
 
-export default function SupportingCard({ person, onAct }) {
+export default function SupportingCard({ person, onAct = () => {} }) {
   const shareLabel = ROLES.find(r => r.value === person.role)?.shareLabel
 
   if (person.role === 'availability') {

@@ -34,3 +34,10 @@ test('an action calls onAct with the person and chosen mode', async () => {
   await userEvent.click(screen.getByRole('button', { name: /cheer this win/i }))
   expect(onAct).toHaveBeenCalledWith(progress, 'cheer')
 })
+
+test('Everything role without struggleFlag hides the rough-week line', () => {
+  const noStruggle = { id: 'sg-9', name: 'Avery', role: 'all', goal: 'Learn piano', progress: '2 practices this week' }
+  render(<SupportingCard person={noStruggle} onAct={() => {}} />)
+  expect(screen.queryByText(/rough week/i)).not.toBeInTheDocument()
+  expect(screen.getByText('Learn piano')).toBeInTheDocument()
+})
