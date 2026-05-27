@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 
 const defaultState = {
-  context: null,
   goalName: '',
   steps: [
     { id: 'step-1', name: '', actions: [] },
@@ -19,7 +18,7 @@ export function allActions(steps) {
 
 export function AppProvider({ children, initialStateOverrides = {} }) {
   const [state, setState] = useState({ ...defaultState, ...initialStateOverrides })
-  const [currentScreen, setCurrentScreen] = useState('welcome')
+  const [currentScreen, setCurrentScreen] = useState('goal-actions')
   const [fading, setFading] = useState(false)
 
   function goTo(screenId) {

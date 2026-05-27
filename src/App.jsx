@@ -1,5 +1,4 @@
 import { AppProvider, useApp } from './context/AppContext'
-import Welcome from './screens/Welcome'
 import GoalActions from './screens/GoalActions'
 import Cadence from './screens/Cadence'
 import OfferedSocial from './screens/OfferedSocial'
@@ -8,7 +7,6 @@ import ReturnView from './screens/ReturnView'
 import styles from './App.module.css'
 
 const SCREENS = {
-  'welcome':        Welcome,
   'goal-actions':   GoalActions,
   'cadence':        Cadence,
   'offered-social': OfferedSocial,

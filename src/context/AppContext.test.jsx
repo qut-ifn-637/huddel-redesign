@@ -12,19 +12,19 @@ test('initial state has one empty step', () => {
   expect(result.current.state.steps[0].actions).toEqual([])
 })
 
-test('initial state has correct defaults', () => {
+test('initial state has correct defaults (no context field)', () => {
   const { result } = renderHook(() => useApp(), { wrapper })
   const { state } = result.current
-  expect(state.context).toBeNull()
+  expect(state).not.toHaveProperty('context')
   expect(state.goalName).toBe('')
   expect(state.cadence).toBe('few_times_week')
   expect(state.cadenceDays).toEqual([])
   expect(state.supporters).toEqual([])
 })
 
-test('currentScreen starts at welcome', () => {
+test('currentScreen starts at goal-actions', () => {
   const { result } = renderHook(() => useApp(), { wrapper })
-  expect(result.current.currentScreen).toBe('welcome')
+  expect(result.current.currentScreen).toBe('goal-actions')
 })
 
 test('updateState merges partial updates without clobbering other fields', () => {
@@ -38,7 +38,7 @@ test('goTo changes currentScreen after 150ms', async () => {
   vi.useFakeTimers()
   const { result } = renderHook(() => useApp(), { wrapper })
   act(() => { result.current.goTo('cadence') })
-  expect(result.current.currentScreen).toBe('welcome')
+  expect(result.current.currentScreen).toBe('goal-actions') // old screen during fade
   act(() => { vi.advanceTimersByTime(150) })
   expect(result.current.currentScreen).toBe('cadence')
   vi.useRealTimers()
