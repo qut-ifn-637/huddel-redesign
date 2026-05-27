@@ -1,0 +1,11 @@
+.back {
+  background: none;
+  border: none;
+  color: var(--color-purple);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--space-4);
+}
