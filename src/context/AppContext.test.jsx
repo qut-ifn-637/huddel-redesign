@@ -1,16 +1,15 @@
 import { renderHook, act } from '@testing-library/react'
-import { AppProvider, useApp } from './AppContext'
+import { AppProvider, useApp, allActions } from './AppContext'
 
 function wrapper({ children }) {
   return <AppProvider>{children}</AppProvider>
 }
 
-test('initial state has one pre-seeded action', () => {
+test('initial state has one empty step', () => {
   const { result } = renderHook(() => useApp(), { wrapper })
-  expect(result.current.state.actions).toHaveLength(1)
-  expect(result.current.state.actions[0].label).toBe('Write 400 words')
-  expect(result.current.state.actions[0].source).toBe('effort')
-  expect(result.current.state.actions[0].completed).toBe(false)
+  expect(result.current.state.steps).toHaveLength(1)
+  expect(result.current.state.steps[0].name).toBe('')
+  expect(result.current.state.steps[0].actions).toEqual([])
 })
 
 test('initial state has correct defaults', () => {
@@ -39,7 +38,7 @@ test('goTo changes currentScreen after 150ms', async () => {
   vi.useFakeTimers()
   const { result } = renderHook(() => useApp(), { wrapper })
   act(() => { result.current.goTo('cadence') })
-  expect(result.current.currentScreen).toBe('welcome') // still old screen during fade
+  expect(result.current.currentScreen).toBe('welcome')
   act(() => { vi.advanceTimersByTime(150) })
   expect(result.current.currentScreen).toBe('cadence')
   vi.useRealTimers()
@@ -55,4 +54,12 @@ test('initialStateOverrides are applied when provided', () => {
   }
   const { result } = renderHook(() => useApp(), { wrapper: customWrapper })
   expect(result.current.state.goalName).toBe('Pre-filled goal')
+})
+
+test('allActions flattens actions across all steps', () => {
+  const steps = [
+    { id: 's1', name: 'A', actions: [{ id: 'a1' }, { id: 'a2' }] },
+    { id: 's2', name: 'B', actions: [{ id: 'a3' }] },
+  ]
+  expect(allActions(steps).map(a => a.id)).toEqual(['a1', 'a2', 'a3'])
 })

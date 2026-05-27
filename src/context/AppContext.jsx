@@ -3,8 +3,8 @@ import { createContext, useContext, useState } from 'react'
 const defaultState = {
   context: null,
   goalName: '',
-  actions: [
-    { id: 'seed-1', label: 'Write 400 words', source: 'effort', completed: false },
+  steps: [
+    { id: 'step-1', name: '', actions: [] },
   ],
   cadence: 'few_times_week',
   cadenceDays: [],
@@ -12,6 +12,10 @@ const defaultState = {
 }
 
 const AppContext = createContext(null)
+
+export function allActions(steps) {
+  return steps.flatMap(s => s.actions)
+}
 
 export function AppProvider({ children, initialStateOverrides = {} }) {
   const [state, setState] = useState({ ...defaultState, ...initialStateOverrides })
