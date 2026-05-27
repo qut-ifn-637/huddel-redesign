@@ -6,11 +6,11 @@ const seedState = {
   goalName: 'Finish my essay',
   milestones: [
     { id: 'm1', name: 'Research', actions: [
-      { id: 'a1', label: 'Read 3 sources', source: 'effort', completed: false },
-      { id: 'a2', label: 'Take notes', source: 'effort', completed: false },
+      { id: 'a1', label: 'Read 3 sources', source: 'effort', kind: 'repeat', count: 0 },
+      { id: 'a2', label: 'Take notes', source: 'effort', kind: 'repeat', count: 0 },
     ]},
     { id: 'm2', name: 'Draft', actions: [
-      { id: 'a3', label: 'Write 400 words', source: 'effort', completed: false },
+      { id: 'a3', label: 'Write 400 words', source: 'effort', kind: 'repeat', count: 0 },
     ]},
   ],
   cadence: 'few_times_week',
@@ -37,7 +37,7 @@ test('shows milestone headers when named and multiple', () => {
 test('a single unnamed milestone renders flat (no header)', () => {
   const flat = {
     ...seedState,
-    milestones: [{ id: 'm1', name: '', actions: [{ id: 'a1', label: 'Read 3 sources', source: 'effort', completed: false }] }],
+    milestones: [{ id: 'm1', name: '', actions: [{ id: 'a1', label: 'Read 3 sources', source: 'effort', kind: 'repeat', count: 0 }] }],
   }
   renderWithApp(<Recognition />, { initialStateOverrides: flat })
   expect(screen.queryByText('Milestone 1')).not.toBeInTheDocument()
@@ -59,7 +59,7 @@ test('before any completion there is no peak, science note, or continue button',
 test('completing an action reveals the peak message and science note immediately', () => {
   vi.useFakeTimers()
   renderWithApp(<Recognition />, { initialStateOverrides: seedState })
-  act(() => { fireEvent.click(screen.getByRole('button', { name: /mark complete: read 3 sources/i })) })
+  act(() => { fireEvent.click(screen.getByRole('button', { name: /mark done: read 3 sources/i })) })
   expect(screen.getByText(/That's one done/)).toBeInTheDocument()
   expect(screen.getByText(/Bandura & Schunk/)).toBeInTheDocument()
   vi.useRealTimers()
@@ -68,7 +68,7 @@ test('completing an action reveals the peak message and science note immediately
 test('continue button appears 1.5s after completing (default cadence copy)', () => {
   vi.useFakeTimers()
   renderWithApp(<Recognition />, { initialStateOverrides: { ...seedState, cadence: 'most_days' } })
-  act(() => { fireEvent.click(screen.getByRole('button', { name: /mark complete: write 400 words/i })) })
+  act(() => { fireEvent.click(screen.getByRole('button', { name: /mark done: write 400 words/i })) })
   act(() => { vi.advanceTimersByTime(1600) })
   expect(screen.getByText(/See what tomorrow looks like/)).toBeInTheDocument()
   vi.useRealTimers()
@@ -77,7 +77,7 @@ test('continue button appears 1.5s after completing (default cadence copy)', () 
 test('continue shows home-base copy for when_i_can cadence', () => {
   vi.useFakeTimers()
   renderWithApp(<Recognition />, { initialStateOverrides: { ...seedState, cadence: 'when_i_can' } })
-  act(() => { fireEvent.click(screen.getByRole('button', { name: /mark complete: read 3 sources/i })) })
+  act(() => { fireEvent.click(screen.getByRole('button', { name: /mark done: read 3 sources/i })) })
   act(() => { vi.advanceTimersByTime(1600) })
   expect(screen.getByText(/See your home base/)).toBeInTheDocument()
   vi.useRealTimers()

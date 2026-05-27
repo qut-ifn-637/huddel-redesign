@@ -11,7 +11,7 @@ export default function ReturnView() {
   const [shared, setShared] = useState(false)
 
   const flat = allActions(milestones)
-  const completedCount = flat.filter(a => a.completed).length
+  const completedCount = flat.filter(a => a.count > 0).length
   const allDone = flat.length > 0 && completedCount === flat.length
   const isWhenICan = state.cadence === 'when_i_can'
 
@@ -19,13 +19,21 @@ export default function ReturnView() {
     ? `${completedCount} action${completedCount !== 1 ? 's' : ''} done so far`
     : `${completedCount} action${completedCount !== 1 ? 's' : ''} done · keep it rolling`
 
-  function handleComplete(actionId) {
+  function applyCount(actionId, fn) {
     const updated = milestones.map(m => ({
       ...m,
-      actions: m.actions.map(a => (a.id === actionId ? { ...a, completed: true } : a)),
+      actions: m.actions.map(a => (a.id === actionId ? { ...a, count: fn(a) } : a)),
     }))
     setMilestones(updated)
     updateState({ milestones: updated })
+  }
+
+  function handleComplete(actionId) {
+    applyCount(actionId, a => (a.kind === 'once' ? 1 : (a.count || 0) + 1))
+  }
+
+  function handleUndo(actionId) {
+    applyCount(actionId, a => Math.max(0, (a.count || 0) - 1))
   }
 
   const showHeaders = milestones.length > 1 || milestones.some(m => m.name.trim())
@@ -41,7 +49,7 @@ export default function ReturnView() {
 
       <div className={styles.steps}>
         {milestones.map((milestone, i) => {
-          const done = milestone.actions.filter(a => a.completed).length
+          const done = milestone.actions.filter(a => a.count > 0).length
           return (
             <div key={milestone.id} className={styles.stepGroup}>
               {showHeaders && (
@@ -56,8 +64,10 @@ export default function ReturnView() {
                     key={action.id}
                     actionId={action.id}
                     label={action.label}
-                    completed={action.completed}
+                    count={action.count || 0}
+                    repeatable={action.kind !== 'once'}
                     onComplete={handleComplete}
+                    onUndo={handleUndo}
                   />
                 ))}
               </div>

@@ -12,17 +12,25 @@ export default function Recognition() {
   const [completedAny, setCompletedAny] = useState(false)
   const [showContinue, setShowContinue] = useState(false)
 
-  function handleComplete(actionId) {
+  function applyCount(actionId, fn) {
     const updated = milestones.map(m => ({
       ...m,
-      actions: m.actions.map(a => (a.id === actionId ? { ...a, completed: true } : a)),
+      actions: m.actions.map(a => (a.id === actionId ? { ...a, count: fn(a) } : a)),
     }))
     setMilestones(updated)
     updateState({ milestones: updated })
+  }
+
+  function handleComplete(actionId) {
+    applyCount(actionId, a => (a.kind === 'once' ? 1 : (a.count || 0) + 1))
     if (!completedAny) {
       setCompletedAny(true)
       setTimeout(() => setShowContinue(true), 1500)
     }
+  }
+
+  function handleUndo(actionId) {
+    applyCount(actionId, a => Math.max(0, (a.count || 0) - 1))
   }
 
   const showHeaders = milestones.length > 1 || milestones.some(m => m.name.trim())
@@ -49,8 +57,10 @@ export default function Recognition() {
                   key={action.id}
                   actionId={action.id}
                   label={action.label}
-                  completed={action.completed}
+                  count={action.count || 0}
+                  repeatable={action.kind !== 'once'}
                   onComplete={handleComplete}
+                  onUndo={handleUndo}
                 />
               ))}
             </div>

@@ -7,8 +7,8 @@ const baseState = {
   goalName: 'Finish my essay',
   milestones: [
     { id: 'milestone-1', name: 'Research', actions: [
-      { id: 'seed-1', label: 'Write 400 words', source: 'effort', completed: true },
-      { id: 'act-2',  label: 'Read for 30 min',  source: 'effort', completed: false },
+      { id: 'seed-1', label: 'Write 400 words', source: 'effort', kind: 'repeat', count: 1 },
+      { id: 'act-2',  label: 'Read for 30 min',  source: 'effort', kind: 'repeat', count: 0 },
     ]},
   ],
   cadence: 'few_times_week',
@@ -77,4 +77,30 @@ test('shows soft re-offer when no supporters', () => {
 test('renders the Bandura & Schunk progress science note', () => {
   renderWithApp(<ReturnView />, { initialStateOverrides: baseState })
   expect(screen.getByText(/near-term progress sustains/i)).toBeInTheDocument()
+})
+
+test('a repeating action shows a "done N×" tally and an undo control', () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: baseState })
+  expect(screen.getByText(/done 1×/)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /undo one/i })).toBeInTheDocument()
+})
+
+test('tapping a not-yet-done repeating action increments the progress count', async () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: baseState })
+  await userEvent.click(screen.getByRole('button', { name: /mark done: read for 30 min/i }))
+  expect(screen.getByText(/2 actions done · keep it rolling/)).toBeInTheDocument()
+})
+
+test('a one-off action toggles done and back via the circle', async () => {
+  const once = {
+    ...baseState,
+    milestones: [{ id: 'milestone-1', name: '', actions: [
+      { id: 'o1', label: 'Submit draft', source: 'effort', kind: 'once', count: 0 },
+    ]}],
+  }
+  renderWithApp(<ReturnView />, { initialStateOverrides: once })
+  await userEvent.click(screen.getByRole('button', { name: /submit draft/i }))
+  expect(screen.getByText(/1 action done · keep it rolling/)).toBeInTheDocument()
+  await userEvent.click(screen.getByRole('button', { name: /submit draft/i }))
+  expect(screen.getByText(/0 actions done · keep it rolling/)).toBeInTheDocument()
 })

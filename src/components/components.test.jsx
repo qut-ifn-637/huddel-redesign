@@ -51,26 +51,46 @@ import CompleteControl from './CompleteControl'
 
 // CompleteControl
 test('CompleteControl renders the action label', () => {
-  render(<CompleteControl actionId="a1" label="Write 400 words" completed={false} onComplete={() => {}} />)
+  render(<CompleteControl actionId="a1" label="Write 400 words" count={0} repeatable onComplete={() => {}} onUndo={() => {}} />)
   expect(screen.getByText('Write 400 words')).toBeInTheDocument()
 })
 
-test('CompleteControl calls onComplete with actionId when tapped', async () => {
+test('repeatable: tapping calls onComplete with actionId', async () => {
   const onComplete = vi.fn()
-  render(<CompleteControl actionId="a1" label="Write 400 words" completed={false} onComplete={onComplete} />)
+  render(<CompleteControl actionId="a1" label="Write 400 words" count={0} repeatable onComplete={onComplete} onUndo={() => {}} />)
   await userEvent.click(screen.getByText('Write 400 words'))
   expect(onComplete).toHaveBeenCalledWith('a1')
 })
 
-test('CompleteControl does not call onComplete when already completed', async () => {
+test('repeatable with count > 0 shows "done N×" and an undo that calls onUndo only', async () => {
   const onComplete = vi.fn()
-  render(<CompleteControl actionId="a1" label="Write 400 words" completed={true} onComplete={onComplete} />)
-  await userEvent.click(screen.getByText('Write 400 words'))
+  const onUndo = vi.fn()
+  render(<CompleteControl actionId="a1" label="Write 400 words" count={3} repeatable onComplete={onComplete} onUndo={onUndo} />)
+  expect(screen.getByText(/done 3×/)).toBeInTheDocument()
+  await userEvent.click(screen.getByRole('button', { name: /undo one/i }))
+  expect(onUndo).toHaveBeenCalledWith('a1')
   expect(onComplete).not.toHaveBeenCalled()
 })
 
-test('CompleteControl has completed class when completed is true', () => {
-  render(<CompleteControl actionId="a1" label="done" completed={true} onComplete={() => {}} />)
-  // The circle element has data-testid="complete-circle"
+test('one-off: first tap completes, tap when done undoes (toggle)', async () => {
+  const onComplete = vi.fn()
+  const onUndo = vi.fn()
+  const { rerender } = render(<CompleteControl actionId="a1" label="Submit draft" count={0} repeatable={false} onComplete={onComplete} onUndo={onUndo} />)
+  await userEvent.click(screen.getByText('Submit draft'))
+  expect(onComplete).toHaveBeenCalledWith('a1')
+  rerender(<CompleteControl actionId="a1" label="Submit draft" count={1} repeatable={false} onComplete={onComplete} onUndo={onUndo} />)
+  await userEvent.click(screen.getByText('Submit draft'))
+  expect(onUndo).toHaveBeenCalledWith('a1')
+})
+
+test('CompleteControl has completed class on the circle when count > 0', () => {
+  render(<CompleteControl actionId="a1" label="done" count={1} repeatable onComplete={() => {}} onUndo={() => {}} />)
   expect(screen.getByTestId('complete-circle')).toHaveClass('completed')
+})
+
+test('a finished one-off is struck through; a repeat is not', () => {
+  const { rerender } = render(<CompleteControl actionId="a1" label="Submit draft" count={1} repeatable={false} onComplete={() => {}} onUndo={() => {}} />)
+  expect(screen.getByText('Submit draft')).toHaveClass('labelDone')
+  rerender(<CompleteControl actionId="a2" label="Write 400 words" count={1} repeatable onComplete={() => {}} onUndo={() => {}} />)
+  expect(screen.getByText('Write 400 words')).not.toHaveClass('labelDone')
 })

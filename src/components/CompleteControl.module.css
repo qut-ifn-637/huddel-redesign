@@ -1,16 +1,20 @@
 .wrapper {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   padding: 18px 20px;
   background: var(--color-beige);
   border-radius: var(--radius-card);
-  cursor: pointer;
   user-select: none;
 }
 
-.wrapperDone {
-  cursor: default;
+.main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
 }
 
 .circle {
@@ -52,9 +56,30 @@
   font-size: 16px;
   color: var(--color-black);
   flex: 1;
+  min-width: 0;
 }
 
 .labelDone {
   color: var(--color-body-gray);
   text-decoration: line-through;
+}
+
+.count {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-body-gray);
+}
+
+.undo {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #ddd;
+  background: none;
+  color: var(--color-body-gray);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
 }
