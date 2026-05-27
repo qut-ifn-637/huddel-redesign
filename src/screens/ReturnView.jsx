@@ -4,13 +4,6 @@ import CompleteControl from '../components/CompleteControl'
 import PrimaryButton from '../components/PrimaryButton'
 import styles from './ReturnView.module.css'
 
-const ROLE_LABELS = {
-  close_peer:        'close peer',
-  family:            'family',
-  study_friend:      'study friend',
-  work_availability: 'work contact',
-}
-
 export default function ReturnView() {
   const { state, updateState, goTo } = useApp()
   const [actions, setActions] = useState(state.actions)
@@ -29,9 +22,7 @@ export default function ReturnView() {
     updateState({ actions: updated })
   }
 
-  const primarySupporterRole = state.supporters[0]
-    ? ROLE_LABELS[state.supporters[0].role] || 'supporter'
-    : null
+  const primarySupporterName = state.supporters[0]?.name || null
 
   return (
     <div className="screenPad">
@@ -54,7 +45,7 @@ export default function ReturnView() {
 
       {state.supporters.length > 0 ? (
         <p className={styles.supporterLine}>
-          Your {primarySupporterRole} can cheer this on.
+          {primarySupporterName} can cheer this on.
         </p>
       ) : (
         <button

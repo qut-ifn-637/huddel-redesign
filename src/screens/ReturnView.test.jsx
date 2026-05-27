@@ -51,7 +51,7 @@ test('shows supporter line when supporters array is non-empty', () => {
   renderWithApp(<ReturnView />, {
     initialStateOverrides: {
       ...baseState,
-      supporters: [{ name: 'Alex', role: 'study_friend' }],
+      supporters: [{ name: 'Alex', role: 'single_goal' }],
     },
   })
   expect(screen.getByText(/can cheer this on/i)).toBeInTheDocument()

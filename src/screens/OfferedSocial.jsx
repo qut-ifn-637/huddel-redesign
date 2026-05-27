@@ -5,10 +5,10 @@ import SkipButton from '../components/SkipButton'
 import styles from './OfferedSocial.module.css'
 
 const ROLES = [
-  { value: 'close_peer',        label: 'Close peer',              description: 'Sees everything' },
-  { value: 'family',            label: 'Family',                  description: 'Sees progress, not the struggles' },
-  { value: 'study_friend',      label: 'Study friend',            description: 'Sees this goal only' },
-  { value: 'work_availability', label: 'Work — availability only', description: "Sees that you're busy, not what you're working on" },
+  { value: 'all',          label: 'Everything',       description: 'Sees your goals, progress, and the hard days — e.g. a partner or close friend.' },
+  { value: 'progress',     label: 'Progress',         description: 'Sees your wins and momentum, not the struggles — e.g. family.' },
+  { value: 'single_goal',  label: 'Just this goal',   description: 'Sees just this one goal, nothing else — e.g. a study buddy or classmate.' },
+  { value: 'availability', label: 'Just availability', description: "Sees that you're busy, not what you're working on — e.g. a manager or coworker." },
 ]
 
 export default function OfferedSocial() {

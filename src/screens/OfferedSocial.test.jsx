@@ -28,14 +28,14 @@ test('skipping routes to recognition and leaves supporters empty', async () => {
 
 test('selecting a role chip shows visibility description', async () => {
   renderWithApp(<OfferedSocial />)
-  await userEvent.click(screen.getByText('Close peer'))
-  expect(screen.getByText(/sees everything/i)).toBeInTheDocument()
+  await userEvent.click(screen.getByText('Everything'))
+  expect(screen.getByText(/partner or close friend/i)).toBeInTheDocument()
 })
 
 test('role chips: all four options render', () => {
   renderWithApp(<OfferedSocial />)
-  expect(screen.getByText('Close peer')).toBeInTheDocument()
-  expect(screen.getByText('Family')).toBeInTheDocument()
-  expect(screen.getByText('Study friend')).toBeInTheDocument()
-  expect(screen.getByText('Work — availability only')).toBeInTheDocument()
+  expect(screen.getByText('Everything')).toBeInTheDocument()
+  expect(screen.getByText('Progress')).toBeInTheDocument()
+  expect(screen.getByText('Just this goal')).toBeInTheDocument()
+  expect(screen.getByText('Just availability')).toBeInTheDocument()
 })
