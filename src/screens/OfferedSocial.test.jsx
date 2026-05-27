@@ -32,6 +32,11 @@ test('selecting a role chip shows visibility description', async () => {
   expect(screen.getByText(/partner or close friend/i)).toBeInTheDocument()
 })
 
+test('renders a header for the roles/permissions section', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.getByText('What will they see?')).toBeInTheDocument()
+})
+
 test('role chips: all four options render', () => {
   renderWithApp(<OfferedSocial />)
   expect(screen.getByText('Everything')).toBeInTheDocument()

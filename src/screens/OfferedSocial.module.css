@@ -56,6 +56,13 @@
   border-color: var(--color-purple);
 }
 
+.rolesHeader {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: var(--space-3);
+}
+
 .roleChips {
   display: flex;
   flex-wrap: wrap;

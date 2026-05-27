@@ -60,6 +60,7 @@ export default function OfferedSocial() {
         />
       </div>
 
+      <p className={styles.rolesHeader}>What will they see?</p>
       <div className={styles.roleChips}>
         {ROLES.map(role => (
           <button
