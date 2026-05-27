@@ -25,11 +25,37 @@
   margin-bottom: var(--space-6);
 }
 
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.stepGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-purple);
+  margin-bottom: var(--space-3);
+}
+
+.stepCount {
+  font-weight: 500;
+  color: var(--color-body-gray);
+}
+
 .actionList {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  margin-bottom: var(--space-8);
 }
 
 .supporterLine {

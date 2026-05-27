@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import { useApp } from '../context/AppContext'
+import { useApp, allActions } from '../context/AppContext'
 import CompleteControl from '../components/CompleteControl'
 import PrimaryButton from '../components/PrimaryButton'
 import styles from './ReturnView.module.css'
 
 export default function ReturnView() {
   const { state, updateState, goTo } = useApp()
-  const [actions, setActions] = useState(state.actions)
+  const [steps, setSteps] = useState(state.steps)
 
-  const completedCount = actions.filter(a => a.completed).length
-  const allDone = completedCount === actions.length
+  const flat = allActions(steps)
+  const completedCount = flat.filter(a => a.completed).length
+  const allDone = flat.length > 0 && completedCount === flat.length
   const isWhenICan = state.cadence === 'when_i_can'
 
   const progressCopy = isWhenICan
@@ -17,11 +18,15 @@ export default function ReturnView() {
     : `${completedCount} action${completedCount !== 1 ? 's' : ''} done · keep it rolling`
 
   function handleComplete(actionId) {
-    const updated = actions.map(a => a.id === actionId ? { ...a, completed: true } : a)
-    setActions(updated)
-    updateState({ actions: updated })
+    const updated = steps.map(s => ({
+      ...s,
+      actions: s.actions.map(a => (a.id === actionId ? { ...a, completed: true } : a)),
+    }))
+    setSteps(updated)
+    updateState({ steps: updated })
   }
 
+  const showHeaders = steps.length > 1 || steps.some(s => s.name.trim())
   const primarySupporterName = state.supporters[0]?.name || null
 
   return (
@@ -31,16 +36,31 @@ export default function ReturnView() {
 
       <p className={styles.progress}>{progressCopy}</p>
 
-      <div className={styles.actionList}>
-        {actions.map(action => (
-          <CompleteControl
-            key={action.id}
-            actionId={action.id}
-            label={action.label}
-            completed={action.completed}
-            onComplete={handleComplete}
-          />
-        ))}
+      <div className={styles.steps}>
+        {steps.map((step, i) => {
+          const done = step.actions.filter(a => a.completed).length
+          return (
+            <div key={step.id} className={styles.stepGroup}>
+              {showHeaders && (
+                <div className={styles.stepHeader}>
+                  <span>{step.name.trim() || `Step ${i + 1}`}</span>
+                  <span className={styles.stepCount}>{done}/{step.actions.length}</span>
+                </div>
+              )}
+              <div className={styles.actionList}>
+                {step.actions.map(action => (
+                  <CompleteControl
+                    key={action.id}
+                    actionId={action.id}
+                    label={action.label}
+                    completed={action.completed}
+                    onComplete={handleComplete}
+                  />
+                ))}
+              </div>
+            </div>
+          )
+        })}
       </div>
 
       {state.supporters.length > 0 ? (
@@ -48,11 +68,7 @@ export default function ReturnView() {
           {primarySupporterName} can cheer this on.
         </p>
       ) : (
-        <button
-          type="button"
-          className={styles.reOffer}
-          onClick={() => goTo('offered-social')}
-        >
+        <button type="button" className={styles.reOffer} onClick={() => goTo('offered-social')}>
           Want to add someone to cheer you on? (optional)
         </button>
       )}
