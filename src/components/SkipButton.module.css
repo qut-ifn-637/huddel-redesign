@@ -1,14 +1,16 @@
 .btn {
   width: 100%;
-  padding: 12px 20px;
+  padding: 8px 20px;
   background: none;
   color: var(--color-body-gray);
   font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   border: none;
   cursor: pointer;
   text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   transition: opacity 0.15s ease;
 }
 
