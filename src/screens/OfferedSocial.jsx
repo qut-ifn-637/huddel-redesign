@@ -3,25 +3,20 @@ import { useApp } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
 import SkipButton from '../components/SkipButton'
 import BackButton from '../components/BackButton'
+import { ROLES } from '../data/roles'
 import styles from './OfferedSocial.module.css'
-
-const ROLES = [
-  { value: 'all',          label: 'Everything',       description: 'Sees your goals, progress, and the hard days — e.g. a partner or close friend.' },
-  { value: 'progress',     label: 'Progress',         description: 'Sees your wins and momentum, not the struggles — e.g. an acquaintance.' },
-  { value: 'availability', label: 'Just availability', description: "Sees that you're busy, not what you're working on — e.g. a manager or coworker." },
-]
 
 export default function OfferedSocial() {
   const { state, updateState, goTo, goBack } = useApp()
   const [name, setName] = useState('')
-  const [selectedRole, setSelectedRole] = useState(null)
+  const [selectedRole, setSelectedRole] = useState('progress')
   const [supporters, setSupporters] = useState(state.supporters)
 
   function handleAdd() {
     if (name.trim() && selectedRole) {
       setSupporters(prev => [...prev, { name: name.trim(), role: selectedRole }])
       setName('')
-      setSelectedRole(null)
+      setSelectedRole('progress')
     }
   }
 
@@ -65,6 +60,7 @@ export default function OfferedSocial() {
           onChange={e => setName(e.target.value)}
         />
       </div>
+      <p className="scienceNote">We follow through more for people we respect — pick someone whose cheer would land. — Klein et al., 2020</p>
 
       <p className={styles.rolesHeader}>What will they see?</p>
       <div className={styles.roleChips}>
@@ -73,9 +69,10 @@ export default function OfferedSocial() {
             key={role.value}
             type="button"
             className={`${styles.roleChip} ${selectedRole === role.value ? styles.roleActive : ''}`}
-            onClick={() => setSelectedRole(prev => prev === role.value ? null : role.value)}
+            onClick={() => setSelectedRole(prev => (prev === role.value ? null : role.value))}
           >
             {role.label}
+            {role.recommended && <span className={styles.recommendedTag}>Recommended</span>}
           </button>
         ))}
       </div>

@@ -136,3 +136,13 @@
   font-size: 13px;
   color: var(--color-body-gray);
 }
+
+.recommendedTag {
+  margin-left: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-purple);
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 1px 6px;
+}

@@ -23,21 +23,33 @@ test('"Skip for now" button is always visible', () => {
   expect(screen.getByRole('button', { name: /skip for now/i })).toBeInTheDocument()
 })
 
-test('skipping routes to recognition and leaves supporters empty', async () => {
-  // Use renderWithApp and check goTo is called — easier to check via App-level test
-  // Here we just verify skip button exists and doesn't crash
+test('skipping does not crash', async () => {
   renderWithApp(<OfferedSocial />)
   await userEvent.click(screen.getByRole('button', { name: /skip for now/i }))
-  // No error means the click didn't throw
 })
 
-test('selecting a role chip shows visibility description', async () => {
+test('Progress is selected by default (its description shows on load)', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.getByText(/not the struggles/i)).toBeInTheDocument()
+})
+
+test('the Progress chip shows a Recommended tag', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.getByText('Recommended')).toBeInTheDocument()
+})
+
+test('renders the Klein respected-supporter nudge', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.getByText(/Klein/)).toBeInTheDocument()
+})
+
+test('selecting a different role chip updates the visibility description', async () => {
   renderWithApp(<OfferedSocial />)
   await userEvent.click(screen.getByText('Everything'))
   expect(screen.getByText(/partner or close friend/i)).toBeInTheDocument()
 })
 
-test('renders a header for the roles/permissions section', () => {
+test('renders a header for the roles section', () => {
   renderWithApp(<OfferedSocial />)
   expect(screen.getByText('What will they see?')).toBeInTheDocument()
 })
