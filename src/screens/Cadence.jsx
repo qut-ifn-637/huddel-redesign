@@ -18,7 +18,7 @@ export default function Cadence() {
   const [cadence, setCadence] = useState(state.cadence)
   const [cadenceDays, setCadenceDays] = useState(state.cadenceDays)
 
-  const showReassurance = state.context === 'both' || state.context === 'life_full'
+  const showReassurance = cadence === 'when_i_can'
 
   function toggleDay(day) {
     setCadenceDays(prev =>

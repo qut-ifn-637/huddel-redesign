@@ -27,17 +27,24 @@ test('day picker does not appear when another option is selected', () => {
   expect(screen.queryByText('Mon')).not.toBeInTheDocument()
 })
 
-test('shows contextual reassurance when context is "both"', () => {
-  renderWithApp(<Cadence />, { initialStateOverrides: { context: 'both' } })
+test('shows reassurance when "Whenever I can" is selected', async () => {
+  renderWithApp(<Cadence />)
+  await userEvent.click(screen.getByText('Whenever I can'))
   expect(screen.getByText(/Smart pick/)).toBeInTheDocument()
 })
 
-test('shows contextual reassurance when context is "life_full"', () => {
-  renderWithApp(<Cadence />, { initialStateOverrides: { context: 'life_full' } })
+test('shows reassurance when cadence is seeded as when_i_can', () => {
+  renderWithApp(<Cadence />, { initialStateOverrides: { cadence: 'when_i_can' } })
   expect(screen.getByText(/Smart pick/)).toBeInTheDocument()
 })
 
-test('does not show contextual reassurance when context is "work"', () => {
-  renderWithApp(<Cadence />, { initialStateOverrides: { context: 'work' } })
+test('does not show reassurance for the default cadence', () => {
+  renderWithApp(<Cadence />)
+  expect(screen.queryByText(/Smart pick/)).not.toBeInTheDocument()
+})
+
+test('does not show reassurance after selecting "Most days"', async () => {
+  renderWithApp(<Cadence />)
+  await userEvent.click(screen.getByText('Most days'))
   expect(screen.queryByText(/Smart pick/)).not.toBeInTheDocument()
 })
