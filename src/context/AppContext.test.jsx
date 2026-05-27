@@ -94,3 +94,47 @@ test('goBack is a no-op when there is no history', () => {
   expect(result.current.currentScreen).toBe('goal')
   vi.useRealTimers()
 })
+
+test('default state seeds supporting and encouragements demo data', () => {
+  const { result } = renderHook(() => useApp(), { wrapper })
+  const { state } = result.current
+  expect(state.supporting.map(p => p.role)).toEqual(['all', 'progress', 'availability'])
+  expect(state.encouragements.received).toHaveLength(2)
+  expect(state.encouragements.sent).toEqual([])
+})
+
+test('inApp starts false and activeTab starts at goals', () => {
+  const { result } = renderHook(() => useApp(), { wrapper })
+  expect(result.current.inApp).toBe(false)
+  expect(result.current.activeTab).toBe('goals')
+})
+
+test('enterApp enters the shell on the goals tab and seeds supporters when empty', () => {
+  const { result } = renderHook(() => useApp(), { wrapper })
+  act(() => { result.current.enterApp() })
+  expect(result.current.inApp).toBe(true)
+  expect(result.current.activeTab).toBe('goals')
+  expect(result.current.state.supporters.map(s => s.name)).toEqual(['Priya', 'Mum'])
+})
+
+test('enterApp keeps supporters the user already added', () => {
+  function customWrapper({ children }) {
+    return <AppProvider initialStateOverrides={{ supporters: [{ id: 'u1', name: 'Jo', role: 'all' }] }}>{children}</AppProvider>
+  }
+  const { result } = renderHook(() => useApp(), { wrapper: customWrapper })
+  act(() => { result.current.enterApp() })
+  expect(result.current.state.supporters).toEqual([{ id: 'u1', name: 'Jo', role: 'all' }])
+})
+
+test('setTab switches the active tab', () => {
+  const { result } = renderHook(() => useApp(), { wrapper })
+  act(() => { result.current.setTab('huddle') })
+  expect(result.current.activeTab).toBe('huddle')
+})
+
+test('sendEncouragement appends to the sent list', () => {
+  const { result } = renderHook(() => useApp(), { wrapper })
+  act(() => { result.current.sendEncouragement({ toName: 'Sam', message: 'Keep going!' }) })
+  expect(result.current.state.encouragements.sent).toHaveLength(1)
+  expect(result.current.state.encouragements.sent[0]).toMatchObject({ to: 'Sam', message: 'Keep going!', when: 'just now' })
+})
