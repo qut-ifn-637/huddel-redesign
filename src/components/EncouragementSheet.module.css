@@ -23,6 +23,6 @@
 
 .esContext { font-size: 14px; color: var(--color-black); }
 .esPresets { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-.esPreset { font-size: 12px; padding: 7px 13px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-beige); color: var(--color-body-gray); cursor: pointer; }
+.esPreset { font-size: 12px; padding: 7px 13px; border-radius: 14px; border: 1px solid var(--color-line); background: var(--color-beige); color: var(--color-body-gray); cursor: pointer; }
 .esPreset.active { background: var(--color-purple-tint); color: var(--color-purple); border-color: var(--color-purple); }
-.esInput { padding: 10px 14px; border: 1px solid #eee; border-radius: 12px; font-family: var(--font-body); font-size: 13px; }
+.esInput { padding: 10px 14px; border: 1px solid var(--color-line); border-radius: 12px; font-family: var(--font-body); font-size: 13px; }
