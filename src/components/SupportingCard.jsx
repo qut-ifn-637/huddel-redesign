@@ -4,15 +4,15 @@ import styles from './SupportingCard.module.css'
 export default function SupportingCard({ person, onAct = () => {} }) {
   const shareLabel = ROLES.find(r => r.value === person.role)?.shareLabel
 
-  if (person.role === 'availability') {
+  if (person.role === 'goal') {
     return (
-      <div className={`${styles.scCard} ${styles.scQuiet}`}>
+      <div className={styles.scCard}>
         <div className={styles.scTop}>
-          <span className={styles.scNameMuted}>{person.name}</span>
+          <span className={styles.scName}>{person.name}</span>
           <span className={styles.scPillMuted}>{shareLabel}</span>
         </div>
-        <p className={styles.scSpaceLine}>{person.status} — give them space.</p>
-        <p className={styles.scFootnote}>No goal shared. Nothing to do here, and that&apos;s the point.</p>
+        <p className={styles.scGoal}>{person.goal}</p>
+        <p className={styles.scFootnote}>You see the goal, not the day-to-day — and that&apos;s the point.</p>
       </div>
     )
   }
@@ -24,6 +24,7 @@ export default function SupportingCard({ person, onAct = () => {} }) {
           <span className={styles.scName}>{person.name}</span>
           <span className={styles.scPillGreen}>{shareLabel}</span>
         </div>
+        {person.goal && <p className={styles.scGoal}>{person.goal}</p>}
         <p className={styles.scWin}>● {person.win}</p>
         <button type="button" className={styles.scPrimaryAction} onClick={() => onAct(person, 'cheer')}>
           Cheer this win
