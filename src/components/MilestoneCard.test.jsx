@@ -91,25 +91,25 @@ test('expanded card shows the Pham & Taylor science note', () => {
 
 test('the segmented control reflects a repeating action as selected', () => {
   renderCard({ milestone: filledMilestone, expanded: true })
-  expect(screen.getByRole('button', { name: 'Repeats' })).toHaveAttribute('aria-pressed', 'true')
-  expect(screen.getByRole('button', { name: 'Just once' })).toHaveAttribute('aria-pressed', 'false')
+  expect(screen.getByRole('button', { name: 'Recurring' })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('button', { name: 'One-time' })).toHaveAttribute('aria-pressed', 'false')
 })
 
-test('tapping "Just once" sets the action kind to once', async () => {
+test('tapping "One-time" sets the action kind to once', async () => {
   const onSetKind = vi.fn()
   renderCard({ milestone: filledMilestone, expanded: true, onSetKind })
-  await userEvent.click(screen.getByRole('button', { name: 'Just once' }))
+  await userEvent.click(screen.getByRole('button', { name: 'One-time' }))
   expect(onSetKind).toHaveBeenCalledWith('a1', 'once')
 })
 
-test('tapping "Repeats" sets a one-off action back to repeat', async () => {
+test('tapping "Recurring" sets a one-off action back to repeat', async () => {
   const once = {
     ...filledMilestone,
     actions: [{ id: 'a1', label: 'Submit draft', source: 'effort', kind: 'once', count: 0 }],
   }
   const onSetKind = vi.fn()
   renderCard({ milestone: once, expanded: true, onSetKind })
-  expect(screen.getByRole('button', { name: 'Just once' })).toHaveAttribute('aria-pressed', 'true')
-  await userEvent.click(screen.getByRole('button', { name: 'Repeats' }))
+  expect(screen.getByRole('button', { name: 'One-time' })).toHaveAttribute('aria-pressed', 'true')
+  await userEvent.click(screen.getByRole('button', { name: 'Recurring' }))
   expect(onSetKind).toHaveBeenCalledWith('a1', 'repeat')
 })

@@ -68,7 +68,7 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
                         aria-pressed={!isOnce}
                         onClick={() => onSetKind(action.id, 'repeat')}
                       >
-                        Repeats
+                        Recurring
                       </button>
                       <button
                         type="button"
@@ -76,7 +76,7 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
                         aria-pressed={isOnce}
                         onClick={() => onSetKind(action.id, 'once')}
                       >
-                        Just once
+                        One-time
                       </button>
                     </div>
                   </li>
