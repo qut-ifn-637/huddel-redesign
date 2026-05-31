@@ -42,7 +42,7 @@ test('skipping does not crash', async () => {
 
 test('Progress is selected by default (its description shows on load)', () => {
   renderWithApp(<OfferedSocial />)
-  expect(screen.getByText(/not the struggles/i)).toBeInTheDocument()
+  expect(screen.getByText(/never the hard days/i)).toBeInTheDocument()
 })
 
 test('the Progress chip shows a Recommended tag', () => {
@@ -70,6 +70,6 @@ test('role chips: all three options render', () => {
   renderWithApp(<OfferedSocial />)
   expect(screen.getByText('Everything')).toBeInTheDocument()
   expect(screen.getByText('Progress')).toBeInTheDocument()
-  expect(screen.getByText('Just availability')).toBeInTheDocument()
+  expect(screen.getByText('Goal only')).toBeInTheDocument()
   expect(screen.queryByText('Just this goal')).not.toBeInTheDocument()
 })
