@@ -14,10 +14,10 @@ test('exposes the step as an accessible label on the container', () => {
 test('renders four dots total, with `step` of them filled', () => {
   const { container } = render(<OnboardingProgress step={2} />)
   expect(container.querySelectorAll('.dot')).toHaveLength(4)
-  expect(container.querySelectorAll('.dotFilled')).toHaveLength(2)
+  expect(container.querySelectorAll('[data-filled]')).toHaveLength(2)
 })
 
 test('fills all four dots on the last step', () => {
   const { container } = render(<OnboardingProgress step={4} />)
-  expect(container.querySelectorAll('.dotFilled')).toHaveLength(4)
+  expect(container.querySelectorAll('[data-filled]')).toHaveLength(4)
 })
