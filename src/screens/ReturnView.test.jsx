@@ -157,3 +157,23 @@ test('"Move the date" reveals preset chips', async () => {
   await userEvent.click(screen.getByRole('button', { name: /move the date/i }))
   expect(screen.getByRole('button', { name: '1 month' })).toBeInTheDocument()
 })
+
+test('clicking "Reached it" shows the milestone-reached celebration', async () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  const reachButtons = screen.getAllByRole('button', { name: /reached it/i })
+  await userEvent.click(reachButtons[0])
+  expect(screen.getByText('Milestone reached 🎉')).toBeInTheDocument()
+})
+
+test('a milestone already reached shows no celebration on initial render', () => {
+  const reachedSeed = {
+    goalName: 'Pass IFN637',
+    supporters: [],
+    milestones: [
+      { id: 'm1', name: 'Done milestone', targetDate: '2099-12-31', reached: true,
+        actions: [{ id: 'a1', label: 'Read 2 papers', source: 'effort', kind: 'repeat', count: 0 }] },
+    ],
+  }
+  renderWithApp(<ReturnView />, { initialStateOverrides: reachedSeed })
+  expect(screen.queryByText('Milestone reached 🎉')).not.toBeInTheDocument()
+})

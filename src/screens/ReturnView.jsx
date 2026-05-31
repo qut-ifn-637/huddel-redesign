@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useApp, allActions } from '../context/AppContext'
 import CompleteControl from '../components/CompleteControl'
+import Celebration from '../components/Celebration'
 import PrimaryButton from '../components/PrimaryButton'
 import { ROLES } from '../data/roles'
 import styles from './ReturnView.module.css'
@@ -20,6 +21,7 @@ export default function ReturnView() {
   const [shared, setShared] = useState(false)
   const [movingId, setMovingId] = useState(null)
   const [notifiedIds, setNotifiedIds] = useState([])
+  const [celebratingId, setCelebratingId] = useState(null)
 
   const flat = allActions(milestones)
   const completedCount = flat.filter(a => a.count > 0).length
@@ -79,11 +81,12 @@ export default function ReturnView() {
 
           if (status === 'reached') {
             return (
-              <div key={milestone.id} className={styles.stepGroup}>
+              <div key={milestone.id} className={`${styles.stepGroup} ${styles.reachedGroup}`}>
                 <button type="button" className={styles.reachedLine} onClick={() => setReached(milestone.id, false)}>
                   <span className={styles.reachedChip}>✓ Reached</span>
                   <span className={styles.reachedName}>{name}</span>
                 </button>
+                {celebratingId === milestone.id && <Celebration onDone={() => setCelebratingId(null)} />}
               </div>
             )
           }
@@ -118,7 +121,7 @@ export default function ReturnView() {
                   />
                 ))}
               </div>
-              <button type="button" className={styles.reachLink} onClick={() => setReached(milestone.id, true)}>
+              <button type="button" className={styles.reachLink} onClick={() => { setReached(milestone.id, true); setCelebratingId(milestone.id) }}>
                 Reached it ✓
               </button>
               {status === 'slipped' && (
