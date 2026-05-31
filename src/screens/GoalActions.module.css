@@ -45,3 +45,63 @@
 .addMilestone:hover {
   border-color: var(--color-purple);
 }
+
+.exampleMilestone {
+  border: 1.5px dashed #b8a8f0;
+  background: #f8f7ff;
+  border-radius: var(--radius-card);
+  padding: 10px 12px;
+  margin-bottom: var(--space-3);
+  position: relative;
+}
+
+.exampleTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.exampleLabel {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #8060dd;
+}
+
+.dismissBtn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #bbb;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.exampleName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #aaa;
+  margin: 0 0 6px;
+}
+
+.exampleDivider {
+  border: none;
+  border-top: 1px solid #e8e4ff;
+  margin: 6px 0;
+}
+
+.exampleAction {
+  font-size: 11px;
+  color: #bbb;
+  margin: 0 0 4px;
+  padding-left: 12px;
+}
+
+.exampleAction::before {
+  content: '•';
+  margin-right: 6px;
+  color: #c8bbff;
+}
