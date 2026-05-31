@@ -3,9 +3,21 @@ import userEvent from '@testing-library/user-event'
 import { renderWithApp } from '../test/helpers'
 import Cadence from './Cadence'
 
-test('renders headline verbatim', () => {
+test('renders the warmer connective heading', () => {
   renderWithApp(<Cadence />)
-  expect(screen.getByText('How often can you work on this?')).toBeInTheDocument()
+  expect(
+    screen.getByText('Nice work. Now, how often can you realistically work on it?')
+  ).toBeInTheDocument()
+})
+
+test('no longer shows the old blunt heading', () => {
+  renderWithApp(<Cadence />)
+  expect(screen.queryByText('How often can you work on this?')).not.toBeInTheDocument()
+})
+
+test('shows the progress indicator on step 3', () => {
+  renderWithApp(<Cadence />)
+  expect(screen.getByText('Step 3 of 4')).toBeInTheDocument()
 })
 
 test('renders a back control', () => {

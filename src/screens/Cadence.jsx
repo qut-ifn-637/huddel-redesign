@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext'
 import OptionCard from '../components/OptionCard'
 import PrimaryButton from '../components/PrimaryButton'
 import BackButton from '../components/BackButton'
+import OnboardingProgress from '../components/OnboardingProgress'
 import styles from './Cadence.module.css'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -39,8 +40,9 @@ export default function Cadence() {
 
   return (
     <div className="screenPad">
+      <OnboardingProgress step={3} />
       <BackButton onClick={handleBack} />
-      <h1 className={styles.headline}>How often can you work on this?</h1>
+      <h1 className={styles.headline}>Nice work. Now, how often can you realistically work on it?</h1>
       <p className={styles.helper}>No wrong answer. You can change this whenever your week changes.</p>
       <p className="scienceNote">A cadence you&apos;ll actually keep protects commitment. — Locke &amp; Latham, 2002</p>
 
