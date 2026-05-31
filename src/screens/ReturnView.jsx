@@ -4,6 +4,13 @@ import CompleteControl from '../components/CompleteControl'
 import PrimaryButton from '../components/PrimaryButton'
 import { ROLES } from '../data/roles'
 import styles from './ReturnView.module.css'
+import { milestoneStatus, formatSoftDate } from '../utils/milestoneStatus'
+
+const STATUS_META = {
+  ontrack: { cls: 'chipOntrack', label: '● On track' },
+  duesoon: { cls: 'chipDuesoon', label: '◐ Due soon' },
+  slipped: { cls: 'chipSlipped', label: '○ Slipped' },
+}
 
 export default function ReturnView() {
   const { state, updateState, goTo } = useApp()
@@ -36,6 +43,12 @@ export default function ReturnView() {
     applyCount(actionId, a => Math.max(0, (a.count || 0) - 1))
   }
 
+  function setReached(milestoneId, val) {
+    const updated = milestones.map(m => (m.id === milestoneId ? { ...m, reached: val } : m))
+    setMilestones(updated)
+    updateState({ milestones: updated })
+  }
+
   const showHeaders = milestones.length > 1 || milestones.some(m => m.name.trim())
   const supporters = state.supporters
 
@@ -50,12 +63,35 @@ export default function ReturnView() {
       <div className={styles.steps}>
         {milestones.map((milestone, i) => {
           const done = milestone.actions.filter(a => a.count > 0).length
+          const status = milestoneStatus(milestone)
+          const name = milestone.name.trim() || `Milestone ${i + 1}`
+
+          if (status === 'reached') {
+            return (
+              <div key={milestone.id} className={styles.stepGroup}>
+                <button type="button" className={styles.reachedLine} onClick={() => setReached(milestone.id, false)}>
+                  <span className={styles.reachedChip}>✓ Reached</span>
+                  <span className={styles.reachedName}>{name}</span>
+                </button>
+              </div>
+            )
+          }
+
           return (
             <div key={milestone.id} className={styles.stepGroup}>
               {showHeaders && (
                 <div className={styles.stepHeader}>
-                  <span>{milestone.name.trim() || `Milestone ${i + 1}`}</span>
-                  <span className={styles.stepCount}>{done}/{milestone.actions.length}</span>
+                  <span>{name}</span>
+                  {status === 'none' ? (
+                    <span className={styles.stepCount}>{done}/{milestone.actions.length}</span>
+                  ) : (
+                    <span className={styles.stepRight}>
+                      <span className={styles.stepDate}>{formatSoftDate(milestone.targetDate)}</span>
+                      <span className={`${styles.statusChip} ${styles[STATUS_META[status].cls]}`}>
+                        {STATUS_META[status].label}
+                      </span>
+                    </span>
+                  )}
                 </div>
               )}
               <div className={styles.actionList}>
@@ -71,6 +107,9 @@ export default function ReturnView() {
                   />
                 ))}
               </div>
+              <button type="button" className={styles.reachLink} onClick={() => setReached(milestone.id, true)}>
+                Reached it ✓
+              </button>
             </div>
           )
         })}

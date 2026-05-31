@@ -109,3 +109,32 @@ test('shows an "Adapt my plan" button', () => {
   renderWithApp(<ReturnView />, { initialStateOverrides: baseState })
   expect(screen.getByRole('button', { name: /adapt my plan/i })).toBeInTheDocument()
 })
+
+const datedSeed = {
+  goalName: 'Pass IFN637',
+  supporters: [],
+  milestones: [
+    { id: 'm1', name: 'On-track milestone', targetDate: '2099-12-31', reached: false,
+      actions: [{ id: 'a1', label: 'Read 2 papers', source: 'effort', kind: 'repeat', count: 0 }] },
+    { id: 'm2', name: 'Slipped milestone', targetDate: '2000-01-01', reached: false,
+      actions: [{ id: 'a2', label: 'Run analysis', source: 'effort', kind: 'repeat', count: 0 }] },
+  ],
+}
+
+test('renders an On track chip for a far-future milestone', () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  expect(screen.getByText('● On track')).toBeInTheDocument()
+})
+
+test('renders a Slipped chip for a past milestone', () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  expect(screen.getByText('○ Slipped')).toBeInTheDocument()
+})
+
+test('"Reached it" collapses a milestone to the reached line', async () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  const reachButtons = screen.getAllByRole('button', { name: /reached it/i })
+  await userEvent.click(reachButtons[0])
+  expect(screen.getByText(/✓ Reached/)).toBeInTheDocument()
+  expect(screen.queryByText('Read 2 papers')).not.toBeInTheDocument()
+})
