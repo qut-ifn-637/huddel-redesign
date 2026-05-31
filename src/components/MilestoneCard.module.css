@@ -1,5 +1,5 @@
 .card {
-  border: 1.5px solid #e6e0ff;
+  border: 1.5px solid var(--color-lavender-line);
   border-radius: var(--radius-card);
   margin-bottom: var(--space-3);
   overflow: hidden;
@@ -48,7 +48,7 @@
 
 .body {
   padding: 12px 14px;
-  border-top: 1px solid #f0ecff;
+  border-top: 1px solid var(--color-lavender-line);
 }
 
 .actionList {
@@ -65,7 +65,7 @@
   gap: 10px;
   padding: 12px 14px;
   background: var(--color-white);
-  border: 1.5px solid #ddd;
+  border: 1.5px solid var(--color-line);
   border-left: 3px solid var(--color-purple);
   border-radius: 12px;
   font-size: 14px;
@@ -120,7 +120,7 @@
   font-weight: 500;
   background: var(--color-beige);
   color: var(--color-black);
-  border: 1.5px solid #e6e0ff;
+  border: 1.5px solid var(--color-lavender-line);
   border-radius: 12px;
   cursor: pointer;
   text-align: center;
@@ -185,7 +185,7 @@
 .segmented {
   display: inline-flex;
   align-self: flex-start;
-  border: 1.5px solid #e6e0ff;
+  border: 1.5px solid var(--color-lavender-line);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -204,7 +204,7 @@
 }
 
 .segment + .segment {
-  border-left: 1.5px solid #e6e0ff;
+  border-left: 1.5px solid var(--color-lavender-line);
 }
 
 .segmentActive {

@@ -22,7 +22,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 2px solid #ccc;
+  border: 2px solid var(--color-lavender-line);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid var(--color-line);
   background: none;
   color: var(--color-body-gray);
   font-size: 18px;
