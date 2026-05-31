@@ -16,8 +16,8 @@ const defaultState = {
   returnTo: null,
   supporting: [
     { id: 'sg-1', name: 'Alex',   role: 'all',          goal: 'Run a half-marathon', progress: '3 of 5 runs this week', slipped: '"Long run" slipped past 20 May' },
-    { id: 'sg-2', name: 'Sam',    role: 'progress',      win: 'Just finished chapter 2' },
-    { id: 'sg-3', name: 'Jordan', role: 'availability',  status: 'Busy this week' },
+    { id: 'sg-2', name: 'Sam',    role: 'progress', goal: 'Write her thesis', win: 'Just finished chapter 2' },
+    { id: 'sg-3', name: 'Jordan', role: 'goal',     goal: 'Learn Spanish' },
   ],
   encouragements: {
     received: [

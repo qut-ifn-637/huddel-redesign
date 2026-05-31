@@ -98,7 +98,7 @@ test('goBack is a no-op when there is no history', () => {
 test('default state seeds supporting and encouragements demo data', () => {
   const { result } = renderHook(() => useApp(), { wrapper })
   const { state } = result.current
-  expect(state.supporting.map(p => p.role)).toEqual(['all', 'progress', 'availability'])
+  expect(state.supporting.map(p => p.role)).toEqual(['all', 'progress', 'goal'])
   expect(state.encouragements.received).toHaveLength(2)
   expect(state.encouragements.sent).toEqual([])
 })
