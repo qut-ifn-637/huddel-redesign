@@ -100,6 +100,6 @@ test('shows the progress indicator on step 2', () => {
 test('shows the connective greeting line', () => {
   renderWithApp(<GoalActions />, { initialStateOverrides: seed })
   expect(
-    screen.getByText("Great start — now let's break it into doable steps.")
+    screen.getByText("Great start — now let's map out the doable steps.")
   ).toBeInTheDocument()
 })
