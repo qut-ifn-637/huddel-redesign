@@ -12,7 +12,7 @@ test('lists supporters with what each one sees', () => {
   renderWithApp(<MyHuddleView />, { initialStateOverrides: withSupporters })
   expect(screen.getByText('Priya')).toBeInTheDocument()
   expect(screen.getByText('Mum')).toBeInTheDocument()
-  expect(screen.getByText(/sees your progress/i)).toBeInTheDocument()
+  expect(screen.getByText(/sees your goal and your wins/i)).toBeInTheDocument()
 })
 
 test('shows the calm subhead', () => {

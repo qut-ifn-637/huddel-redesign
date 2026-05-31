@@ -60,7 +60,7 @@ test('shows the "Your corner" block with what each supporter sees', () => {
   renderWithApp(<ReturnView />, { initialStateOverrides: { ...baseState, supporters: [{ name: 'Alex', role: 'progress' }] } })
   expect(screen.getByText('Your corner')).toBeInTheDocument()
   expect(screen.getByText('Alex')).toBeInTheDocument()
-  expect(screen.getByText(/sees your progress/i)).toBeInTheDocument()
+  expect(screen.getByText(/sees your goal and your wins/i)).toBeInTheDocument()
 })
 
 test('the share button confirms after tapping', async () => {
