@@ -113,3 +113,31 @@ test('tapping "Recurring" sets a one-off action back to repeat', async () => {
   await userEvent.click(screen.getByRole('button', { name: 'Recurring' }))
   expect(onSetKind).toHaveBeenCalledWith('a1', 'repeat')
 })
+
+const datedMilestone = { id: 'm1', name: 'Lit review', actions: [], targetDate: null, reached: false }
+
+test('shows the optional target-date preset row when expanded', () => {
+  render(<MilestoneCard milestone={datedMilestone} expanded={true}
+    onToggle={() => {}} onRename={() => {}} onAddAction={() => {}}
+    onRemoveAction={() => {}} onSetKind={() => {}} onSetTargetDate={() => {}} />)
+  expect(screen.getByText(/hope to finish by/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: '2 weeks' })).toBeInTheDocument()
+})
+
+test('clicking a preset calls onSetTargetDate with an ISO date', async () => {
+  const onSetTargetDate = vi.fn()
+  render(<MilestoneCard milestone={datedMilestone} expanded={true}
+    onToggle={() => {}} onRename={() => {}} onAddAction={() => {}}
+    onRemoveAction={() => {}} onSetKind={() => {}} onSetTargetDate={onSetTargetDate} />)
+  await userEvent.click(screen.getByRole('button', { name: '2 weeks' }))
+  expect(onSetTargetDate).toHaveBeenCalledTimes(1)
+  expect(onSetTargetDate.mock.calls[0][0]).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+})
+
+test('"Pick a date" reveals a native date input', async () => {
+  render(<MilestoneCard milestone={datedMilestone} expanded={true}
+    onToggle={() => {}} onRename={() => {}} onAddAction={() => {}}
+    onRemoveAction={() => {}} onSetKind={() => {}} onSetTargetDate={() => {}} />)
+  await userEvent.click(screen.getByRole('button', { name: /pick a date/i }))
+  expect(screen.getByLabelText('Pick a target date')).toBeInTheDocument()
+})

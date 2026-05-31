@@ -1,11 +1,15 @@
 import { useState } from 'react'
+import { presetDate, formatSoftDate } from '../utils/milestoneStatus'
 import styles from './MilestoneCard.module.css'
 
 const EFFORT_CHIPS = ['Write 400 words', 'Read for 30 min', 'Practice 20 min', 'Draft one section']
 
-export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction, onSetKind }) {
+const PRESETS = [['week', 'This week'], ['fortnight', '2 weeks'], ['month', '1 month']]
+
+export default function MilestoneCard({ milestone, expanded, onToggle, onRename, onAddAction, onRemoveAction, onSetKind, onSetTargetDate }) {
   const [customInput, setCustomInput] = useState('')
   const [showCustom, setShowCustom] = useState(false)
+  const [showPicker, setShowPicker] = useState(false)
 
   function handleCustomSubmit(e) {
     e.preventDefault()
@@ -119,6 +123,41 @@ export default function MilestoneCard({ milestone, expanded, onToggle, onRename,
               <button type="submit" className={styles.customAdd}>Add</button>
             </form>
           )}
+
+          <div className={styles.dateRow}>
+            <p className={styles.dateLabel}>Hope to finish by · optional</p>
+            <div className={styles.datePresets}>
+              {PRESETS.map(([key, label]) => (
+                <button
+                  key={key}
+                  type="button"
+                  className={styles.datePreset}
+                  onClick={() => { onSetTargetDate(presetDate(key)); setShowPicker(false) }}
+                >
+                  {label}
+                </button>
+              ))}
+              <button
+                type="button"
+                className={styles.datePreset}
+                onClick={() => setShowPicker(true)}
+              >
+                Pick a date
+              </button>
+            </div>
+            {showPicker && (
+              <input
+                type="date"
+                className={styles.dateInput}
+                aria-label="Pick a target date"
+                value={milestone.targetDate || ''}
+                onChange={e => onSetTargetDate(e.target.value || null)}
+              />
+            )}
+            {milestone.targetDate && (
+              <p className={styles.dateChosen}>Hope to finish {formatSoftDate(milestone.targetDate)}</p>
+            )}
+          </div>
         </div>
       )}
     </div>

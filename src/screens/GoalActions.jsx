@@ -37,13 +37,17 @@ export default function GoalActions() {
     }))
   }
 
+  function setTargetDate(milestoneId, iso) {
+    updateMilestone(milestoneId, m => ({ ...m, targetDate: iso }))
+  }
+
   function removeAction(milestoneId, actionId) {
     updateMilestone(milestoneId, m => ({ ...m, actions: m.actions.filter(a => a.id !== actionId) }))
   }
 
   function addMilestone() {
     const id = `milestone-${nextMilestone++}`
-    setMilestones(prev => [...prev, { id, name: '', actions: [] }])
+    setMilestones(prev => [...prev, { id, name: '', actions: [], targetDate: null, reached: false }])
     setExpandedId(id)
   }
 
@@ -110,6 +114,7 @@ export default function GoalActions() {
             onAddAction={(label, source) => addAction(milestone.id, label, source)}
             onRemoveAction={actionId => removeAction(milestone.id, actionId)}
             onSetKind={(actionId, kind) => setKind(milestone.id, actionId, kind)}
+            onSetTargetDate={iso => setTargetDate(milestone.id, iso)}
           />
         ))}
       </div>
