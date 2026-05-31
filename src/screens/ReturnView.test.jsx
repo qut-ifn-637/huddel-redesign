@@ -138,3 +138,22 @@ test('"Reached it" collapses a milestone to the reached line', async () => {
   expect(screen.getByText(/✓ Reached/)).toBeInTheDocument()
   expect(screen.queryByText('Read 2 papers')).not.toBeInTheDocument()
 })
+
+test('a slipped milestone shows the support prompt and two actions', () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  expect(screen.getByText(/plans bend/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /move the date/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /let your huddle know/i })).toBeInTheDocument()
+})
+
+test('"Let your huddle know" shows a confirmation', async () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  await userEvent.click(screen.getByRole('button', { name: /let your huddle know/i }))
+  expect(screen.getByText(/huddle.*told/i)).toBeInTheDocument()
+})
+
+test('"Move the date" reveals preset chips', async () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: datedSeed })
+  await userEvent.click(screen.getByRole('button', { name: /move the date/i }))
+  expect(screen.getByRole('button', { name: '1 month' })).toBeInTheDocument()
+})

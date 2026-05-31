@@ -4,7 +4,7 @@ import CompleteControl from '../components/CompleteControl'
 import PrimaryButton from '../components/PrimaryButton'
 import { ROLES } from '../data/roles'
 import styles from './ReturnView.module.css'
-import { milestoneStatus, formatSoftDate } from '../utils/milestoneStatus'
+import { milestoneStatus, formatSoftDate, presetDate } from '../utils/milestoneStatus'
 
 const STATUS_META = {
   ontrack: { cls: 'chipOntrack', label: '● On track' },
@@ -12,10 +12,14 @@ const STATUS_META = {
   slipped: { cls: 'chipSlipped', label: '○ Slipped' },
 }
 
+const PRESETS = [['week', 'This week'], ['fortnight', '2 weeks'], ['month', '1 month']]
+
 export default function ReturnView() {
   const { state, updateState, goTo } = useApp()
   const [milestones, setMilestones] = useState(state.milestones)
   const [shared, setShared] = useState(false)
+  const [movingId, setMovingId] = useState(null)
+  const [notifiedIds, setNotifiedIds] = useState([])
 
   const flat = allActions(milestones)
   const completedCount = flat.filter(a => a.count > 0).length
@@ -47,6 +51,13 @@ export default function ReturnView() {
     const updated = milestones.map(m => (m.id === milestoneId ? { ...m, reached: val } : m))
     setMilestones(updated)
     updateState({ milestones: updated })
+  }
+
+  function moveDate(milestoneId, iso) {
+    const updated = milestones.map(m => (m.id === milestoneId ? { ...m, targetDate: iso } : m))
+    setMilestones(updated)
+    updateState({ milestones: updated })
+    setMovingId(null)
   }
 
   const showHeaders = milestones.length > 1 || milestones.some(m => m.name.trim())
@@ -110,6 +121,40 @@ export default function ReturnView() {
               <button type="button" className={styles.reachLink} onClick={() => setReached(milestone.id, true)}>
                 Reached it ✓
               </button>
+              {status === 'slipped' && (
+                <div className={styles.support}>
+                  {notifiedIds.includes(milestone.id) ? (
+                    <p className={styles.supportTold}>Your huddle&apos;s been told 💜</p>
+                  ) : (
+                    <>
+                      <p className={styles.supportText}>This one slipped past your date. That&apos;s okay — plans bend.</p>
+                      {movingId === milestone.id ? (
+                        <div className={styles.movePresets}>
+                          {PRESETS.map(([key, label]) => (
+                            <button
+                              key={key}
+                              type="button"
+                              className={styles.movePreset}
+                              onClick={() => moveDate(milestone.id, presetDate(key))}
+                            >
+                              {label}
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className={styles.supportRow}>
+                          <button type="button" className={styles.supportMove} onClick={() => setMovingId(milestone.id)}>
+                            Move the date
+                          </button>
+                          <button type="button" className={styles.supportTell} onClick={() => setNotifiedIds(ids => [...ids, milestone.id])}>
+                            Let your huddle know
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           )
         })}
