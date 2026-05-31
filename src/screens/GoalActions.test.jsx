@@ -81,3 +81,13 @@ test('Next remains disabled while only the example is shown and no real actions 
   renderWithApp(<GoalActions />, { initialStateOverrides: seed })
   expect(screen.getByRole('button', { name: /^next$/i })).toBeDisabled()
 })
+
+test('shows "Next" button by default (no returnTo set)', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  expect(screen.getByRole('button', { name: /^next$/i })).toBeInTheDocument()
+})
+
+test('shows "Save changes" button when returnTo is return-view', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: { ...seed, returnTo: 'return-view' } })
+  expect(screen.getByRole('button', { name: /save changes/i })).toBeInTheDocument()
+})

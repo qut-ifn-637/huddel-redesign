@@ -52,8 +52,13 @@ export default function GoalActions() {
 
   function handleNext() {
     const pruned = milestones.filter(m => m.actions.length > 0)
-    updateState({ milestones: pruned })
-    goTo('cadence')
+    if (state.returnTo === 'return-view') {
+      updateState({ milestones: pruned, returnTo: null })
+      goTo('return-view')
+    } else {
+      updateState({ milestones: pruned })
+      goTo('cadence')
+    }
   }
 
   function handleBack() {
@@ -113,7 +118,7 @@ export default function GoalActions() {
 
       <div className="bottomActions">
         <PrimaryButton onClick={handleNext} disabled={!canAdvance}>
-          Next
+          {state.returnTo === 'return-view' ? 'Save changes' : 'Next'}
         </PrimaryButton>
       </div>
     </div>

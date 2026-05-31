@@ -13,6 +13,7 @@ const defaultState = {
   cadence: 'few_times_week',
   cadenceDays: [],
   supporters: [],
+  returnTo: null,
   supporting: [
     { id: 'sg-1', name: 'Alex',   role: 'all',          goal: 'Run a half-marathon', progress: '3 of 5 runs this week', struggleFlag: true },
     { id: 'sg-2', name: 'Sam',    role: 'progress',      win: 'Just finished chapter 2' },
