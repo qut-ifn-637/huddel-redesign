@@ -2,6 +2,6 @@
 .ecList { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
 .ecCheerCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
 .ecMessage { font-size: 14px; color: var(--color-black); }
-.ecMeta { font-size: 11px; color: #999; margin-top: var(--space-3); }
-.ecFootnote { font-size: 11px; color: #aaa; text-align: center; margin-top: var(--space-5); }
+.ecMeta { font-size: 11px; color: var(--color-muted); margin-top: var(--space-3); }
+.ecFootnote { font-size: 11px; color: var(--color-muted); text-align: center; margin-top: var(--space-5); }
 .ecEmpty { font-size: 14px; color: var(--color-body-gray); margin-top: var(--space-5); }

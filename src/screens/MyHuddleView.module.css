@@ -12,9 +12,9 @@
 .mhAddLink { display: block; width: 100%; text-align: center; background: none; border: none; color: var(--color-purple); font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; padding: var(--space-3); }
 
 .mhAddForm { background: var(--color-soft-blue); border-radius: var(--radius-card); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
-.mhInput { padding: 10px 14px; border: 1px solid #ddd; border-radius: 12px; font-family: var(--font-body); font-size: 14px; }
+.mhInput { padding: 10px 14px; border: 1px solid var(--color-line); border-radius: 12px; font-family: var(--font-body); font-size: 14px; }
 .mhRoleChips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-.mhChip { font-size: 12px; padding: 6px 12px; border-radius: 14px; border: 1px solid #ddd; background: var(--color-white); color: var(--color-body-gray); cursor: pointer; }
+.mhChip { font-size: 12px; padding: 6px 12px; border-radius: 14px; border: 1px solid var(--color-line); background: var(--color-white); color: var(--color-body-gray); cursor: pointer; }
 .mhChip.active { border-color: var(--color-purple); background: var(--color-purple-tint); color: var(--color-purple); }
 .mhAddBtn { padding: 10px; border: none; border-radius: var(--radius-button); background: var(--color-purple); color: var(--color-white); font-family: var(--font-body); font-weight: 600; cursor: pointer; }
 .mhAddBtn:disabled { opacity: 0.45; cursor: default; }

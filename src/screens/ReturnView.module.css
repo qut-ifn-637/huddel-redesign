@@ -121,9 +121,9 @@
   width: 100%;
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--color-body-gray);
+  color: var(--color-coral);
   background: none;
-  border: 1px dashed #ccc;
+  border: 1px dashed var(--color-line);
   border-radius: var(--radius-card);
   padding: 14px 16px;
   text-align: left;
@@ -133,14 +133,14 @@
 }
 
 .reOffer:hover {
-  border-color: var(--color-purple);
-  color: var(--color-purple);
+  border-color: var(--color-coral);
+  color: var(--color-coral);
 }
 
 .adaptBtn {
   background: none;
   border: none;
-  color: var(--color-body-gray);
+  color: var(--color-coral);
   font-family: var(--font-body);
   font-size: 14px;
   cursor: pointer;
