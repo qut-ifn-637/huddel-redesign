@@ -76,6 +76,17 @@ export default function ReturnView() {
         })}
       </div>
 
+      <button
+        type="button"
+        className={styles.adaptBtn}
+        onClick={() => {
+          updateState({ returnTo: 'return-view' })
+          goTo('goal-actions')
+        }}
+      >
+        + Adapt my plan
+      </button>
+
       {supporters.length > 0 ? (
         <div className={styles.corner}>
           <p className={styles.cornerHeader}>Your corner</p>

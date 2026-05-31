@@ -104,3 +104,8 @@ test('a one-off action toggles done and back via the circle', async () => {
   await userEvent.click(screen.getByRole('button', { name: /submit draft/i }))
   expect(screen.getByText(/0 actions done · keep it rolling/)).toBeInTheDocument()
 })
+
+test('shows an "Adapt my plan" button', () => {
+  renderWithApp(<ReturnView />, { initialStateOverrides: baseState })
+  expect(screen.getByRole('button', { name: /adapt my plan/i })).toBeInTheDocument()
+})
