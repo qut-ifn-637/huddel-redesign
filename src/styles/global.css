@@ -3,15 +3,25 @@
 /* ── Huddel design tokens ── */
 :root {
   --color-purple:          #5015ff;
-  --color-purple-tint:     #ede8ff;
-  --color-black:           #060000;
-  --color-body-gray:       #474747;
+  --color-purple-tint:     #efe6f5;
+  --color-black:           #2b2230;
+  --color-body-gray:       #6a5f60;
   --color-white:           #ffffff;
-  --color-soft-blue:       #f9fafb;
+  --color-soft-blue:       #f3ece2;
   --color-sunshine-yellow: #fff493; /* decorative only — never for text */
   --color-orange:          #eb672f;
   --color-success-green:   #2feb7d;
-  --color-beige:           #f4f3ec;
+  --color-beige:           #f3ecf3;
+
+  /* warm refresh additions */
+  --color-cream:           #fbf5ee;
+  --color-coral:           #d2603a;
+  --color-coral-tint:      #fadfce;
+  --color-line:            #e7ddd0;
+  --color-lavender-line:   #e3d9ee;
+  --color-muted:           #9a8f92;
+  --color-progress-green:  #2c9e63;
+  --color-progress-tint:   #e7f7ee;
 
   --font-heading: 'Fraunces', Georgia, serif;
   --font-body:    'Inter', system-ui, sans-serif;
@@ -53,7 +63,7 @@ body {
   max-width: 390px;
   margin: 0 auto;
   min-height: 100dvh;
-  background: var(--color-white);
+  background: var(--color-cream);
   position: relative;
   overflow-x: hidden;
 }
@@ -84,7 +94,7 @@ body {
   width: 100%;
   max-width: 390px;
   padding: var(--space-5) var(--space-6) var(--space-6);
-  background: linear-gradient(transparent, var(--color-white) 30%);
+  background: linear-gradient(transparent, var(--color-cream) 30%);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
