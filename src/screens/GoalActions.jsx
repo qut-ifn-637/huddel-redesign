@@ -3,6 +3,7 @@ import { useApp, allActions } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
 import BackButton from '../components/BackButton'
 import MilestoneCard from '../components/MilestoneCard'
+import OnboardingProgress from '../components/OnboardingProgress'
 import styles from './GoalActions.module.css'
 
 let nextMilestone = 2
@@ -70,9 +71,11 @@ export default function GoalActions() {
 
   return (
     <div className="screenPad">
+      <OnboardingProgress step={2} />
       <BackButton onClick={handleBack} />
       {state.goalName && <p className={styles.eyebrow}>{state.goalName}</p>}
       <h1 className={styles.heading}>Break it into milestones</h1>
+      <p className={styles.greeting}>Great start — now let&apos;s break it into doable steps.</p>
       <p className="scienceNote">Near-term milestones build momentum and confidence. — Bandura &amp; Schunk, 1981</p>
       <p className={styles.helper}>
         Each milestone is a big step toward your goal. Add the actions you&apos;ll actually do inside it.

@@ -91,3 +91,15 @@ test('shows "Save changes" button when returnTo is return-view', () => {
   renderWithApp(<GoalActions />, { initialStateOverrides: { ...seed, returnTo: 'return-view' } })
   expect(screen.getByRole('button', { name: /save changes/i })).toBeInTheDocument()
 })
+
+test('shows the progress indicator on step 2', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  expect(screen.getByText('Step 2 of 4')).toBeInTheDocument()
+})
+
+test('shows the connective greeting line', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  expect(
+    screen.getByText("Great start — now let's break it into doable steps.")
+  ).toBeInTheDocument()
+})
