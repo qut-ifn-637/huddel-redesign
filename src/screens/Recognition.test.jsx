@@ -16,9 +16,14 @@ const seedState = {
   cadence: 'few_times_week',
 }
 
-test('renders headline verbatim', () => {
+test('renders the celebratory finale headline', () => {
   renderWithApp(<Recognition />, { initialStateOverrides: seedState })
-  expect(screen.getByText("You're set up. Try it once.")).toBeInTheDocument()
+  expect(screen.getByText("🎉 You're all set up! Try it once.")).toBeInTheDocument()
+})
+
+test('does not render a progress indicator (it is the finale)', () => {
+  renderWithApp(<Recognition />, { initialStateOverrides: seedState })
+  expect(screen.queryByText(/Step \d of 4/)).not.toBeInTheDocument()
 })
 
 test('shows all added actions', () => {

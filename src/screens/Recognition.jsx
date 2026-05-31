@@ -41,7 +41,7 @@ export default function Recognition() {
   return (
     <div className="screenPad">
       <BackButton onClick={goBack} />
-      <h1 className={styles.headline}>You&apos;re set up. Try it once.</h1>
+      <h1 className={styles.headline}>🎉 You&apos;re all set up! Try it once.</h1>
 
       <div className={styles.milestones}>
         {milestones.map((milestone, i) => (
