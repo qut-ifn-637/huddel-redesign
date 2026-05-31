@@ -29,7 +29,7 @@
 
 .addMilestone {
   width: 100%;
-  border: 1px dashed #c8bfff;
+  border: 1px dashed var(--color-lavender-line);
   color: var(--color-purple);
   background: none;
   border-radius: var(--radius-card);
@@ -47,8 +47,8 @@
 }
 
 .exampleMilestone {
-  border: 1.5px dashed #b8a8f0;
-  background: #f8f7ff;
+  border: 1.5px dashed var(--color-lavender-line);
+  background: var(--color-purple-tint);
   border-radius: var(--radius-card);
   padding: 10px 12px;
   margin-bottom: var(--space-3);
@@ -67,14 +67,14 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #8060dd;
+  color: var(--color-purple);
 }
 
 .dismissBtn {
   background: none;
   border: none;
   font-size: 13px;
-  color: #bbb;
+  color: var(--color-muted);
   cursor: pointer;
   padding: 0;
   line-height: 1;
@@ -83,19 +83,19 @@
 .exampleName {
   font-size: 12px;
   font-weight: 600;
-  color: #aaa;
+  color: var(--color-muted);
   margin: 0 0 6px;
 }
 
 .exampleDivider {
   border: none;
-  border-top: 1px solid #e8e4ff;
+  border-top: 1px solid var(--color-lavender-line);
   margin: 6px 0;
 }
 
 .exampleAction {
   font-size: 11px;
-  color: #bbb;
+  color: var(--color-muted);
   margin: 0 0 4px;
   padding-left: 12px;
 }
@@ -103,7 +103,7 @@
 .exampleAction::before {
   content: '•';
   margin-right: 6px;
-  color: #c8bbff;
+  color: var(--color-lavender-line);
 }
 
 .greeting {

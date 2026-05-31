@@ -28,7 +28,7 @@
   padding: 14px 16px;
   font-family: var(--font-body);
   font-size: 16px;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid var(--color-line);
   border-radius: var(--radius-card);
   outline: none;
   transition: border-color 0.15s;
