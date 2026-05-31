@@ -1,0 +1,28 @@
+.progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-purple-tint);
+}
+
+.dotFilled {
+  background: var(--color-purple);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-body-gray);
+}
