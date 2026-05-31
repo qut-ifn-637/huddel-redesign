@@ -1,9 +1,7 @@
 .scCard { background: var(--color-beige); border-radius: var(--radius-card); padding: var(--space-5); }
-.scQuiet { background: var(--color-soft-blue); border: 1px dashed var(--color-line); }
 
 .scTop { display: flex; justify-content: space-between; align-items: center; }
 .scName { font-weight: 600; color: var(--color-black); }
-.scNameMuted { font-weight: 600; color: var(--color-body-gray); }
 
 .scPill { font-size: 11px; background: var(--color-purple-tint); color: var(--color-purple); padding: 3px 9px; border-radius: 10px; }
 .scPillGreen { font-size: 11px; background: var(--color-progress-tint); color: var(--color-progress-green); padding: 3px 9px; border-radius: 10px; }
@@ -13,7 +11,6 @@
 .scProgress { font-size: 13px; color: var(--color-progress-green); }
 .scStruggle { font-size: 13px; color: var(--color-coral); margin-top: 2px; }
 .scWin { font-size: 13px; color: var(--color-progress-green); margin: var(--space-3) 0; }
-.scSpaceLine { font-size: 13px; color: var(--color-body-gray); margin: var(--space-3) 0 var(--space-2); }
 .scFootnote { font-size: 11px; color: var(--color-muted); margin-top: var(--space-3); }
 
 .scActions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }

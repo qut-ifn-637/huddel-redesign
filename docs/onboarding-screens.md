@@ -56,7 +56,7 @@ GoalSetup → GoalActions → Cadence → OfferedSocial → Recognition → (app
 - **Reasoning:** We follow through more for people we respect (Klein et al., 2020), but broadcasting a goal too widely can sap drive (Gollwitzer et al., 2009). The fix is *graduated, per-person visibility* — share the vulnerable parts with the few you trust, the highlights with a wider circle. Adding people is always optional and skippable.
 - **Design:** Name/contact input; the **three privacy tiers** (see below); a recommended default; skippable. `OnboardingProgress step={4}`.
 
-### Privacy tiers (re-based) ⏳ Pending implementation
+### Privacy tiers (re-based) ✅ Implemented (2026-05-31)
 
 **Problem with the old model:** the lowest tier was "Just availability" — *they see only that you're busy, not your goal* — pitched at a manager/coworker. But a work contact will never install a goal-support app just to broadcast "I'm busy," so that tier solved an imagined problem. And the middle tier ("Progress") incoherently hid the goal name.
 
@@ -96,4 +96,4 @@ The home screen (`ReturnView`) reads what onboarding produced: per-milestone sta
 
 ## Change log
 
-- **2026-05-31** — Created. Privacy tiers re-based (Everything / Progress / Goal only), replacing the "Just availability" floor; implementation pending.
+- **2026-05-31** — Created. Privacy tiers re-based (Everything / Progress / Goal only), replacing the "Just availability" floor — **now implemented** (`roles.js` value `goal`; `SupportingCard` goal-only branch; Progress shows the goal; demo Jordan → goal, Sam gains a goal).

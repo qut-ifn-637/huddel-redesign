@@ -179,7 +179,7 @@ export default function ReturnView() {
           <p className={styles.cornerHeader}>Your corner</p>
           <ul className={styles.cornerList}>
             {supporters.map((s, i) => {
-              const sees = ROLES.find(r => r.value === s.role)?.sees || 'sees your progress'
+              const sees = ROLES.find(r => r.value === s.role)?.sees || 'sees your goal'
               return (
                 <li key={i} className={styles.cornerItem}>
                   <span className={styles.cornerName}>{s.name}</span>
