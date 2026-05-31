@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
 import SkipButton from '../components/SkipButton'
 import BackButton from '../components/BackButton'
+import OnboardingProgress from '../components/OnboardingProgress'
 import { ROLES } from '../data/roles'
 import styles from './OfferedSocial.module.css'
 
@@ -39,8 +40,9 @@ export default function OfferedSocial() {
 
   return (
     <div className="screenPad">
+      <OnboardingProgress step={4} />
       <BackButton onClick={handleBack} />
-      <h1 className={styles.headline}>Want a supporter in your corner?</h1>
+      <h1 className={styles.headline}>Almost there — want someone in your corner?</h1>
       <p className={styles.subhead}>
         Adding people is optional — and you choose exactly what they see. You can do this any time later.
       </p>

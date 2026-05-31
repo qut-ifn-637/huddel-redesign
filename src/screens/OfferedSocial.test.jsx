@@ -3,9 +3,21 @@ import userEvent from '@testing-library/user-event'
 import { renderWithApp } from '../test/helpers'
 import OfferedSocial from './OfferedSocial'
 
-test('renders headline verbatim', () => {
+test('renders the warmer connective heading', () => {
   renderWithApp(<OfferedSocial />)
-  expect(screen.getByText('Want a supporter in your corner?')).toBeInTheDocument()
+  expect(
+    screen.getByText('Almost there — want someone in your corner?')
+  ).toBeInTheDocument()
+})
+
+test('no longer shows the old heading', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.queryByText('Want a supporter in your corner?')).not.toBeInTheDocument()
+})
+
+test('shows the progress indicator on step 4', () => {
+  renderWithApp(<OfferedSocial />)
+  expect(screen.getByText('Step 4 of 4')).toBeInTheDocument()
 })
 
 test('renders a back control', () => {
