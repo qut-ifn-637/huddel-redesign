@@ -69,7 +69,7 @@ export default function GoalActions() {
       <h1 className={styles.heading}>Break it into milestones</h1>
       <p className="scienceNote">Near-term milestones build momentum and confidence. — Bandura &amp; Schunk, 1981</p>
       <p className={styles.helper}>
-        Optional — add as many as help, or keep just one. Each milestone holds the effort actions you&apos;ll actually do.
+        Each milestone is a big step toward your goal. Add the actions you&apos;ll actually do inside it.
       </p>
 
       <div className={styles.milestones}>

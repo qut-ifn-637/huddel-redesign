@@ -53,3 +53,10 @@ test('a newly added action defaults to repeating', async () => {
   await userEvent.click(screen.getByText('Read for 30 min'))
   expect(screen.getByRole('button', { name: 'Repeats' })).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('shows hierarchy helper text beneath the heading', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  expect(
+    screen.getByText(/each milestone is a big step toward your goal/i)
+  ).toBeInTheDocument()
+})
