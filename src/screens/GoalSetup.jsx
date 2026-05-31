@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import PrimaryButton from '../components/PrimaryButton'
+import OnboardingProgress from '../components/OnboardingProgress'
 import styles from './GoalSetup.module.css'
 
 export default function GoalSetup() {
@@ -14,6 +15,7 @@ export default function GoalSetup() {
 
   return (
     <div className="screenPad">
+      <OnboardingProgress step={1} />
       <div className={styles.brand}>Huddel</div>
       <h1 className={styles.headline}>What goal are you working on?</h1>
       <p className={styles.subhead}>

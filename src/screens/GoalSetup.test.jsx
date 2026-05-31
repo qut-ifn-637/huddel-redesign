@@ -27,3 +27,8 @@ test('Continue is disabled until a goal name is entered', async () => {
   await userEvent.type(screen.getByPlaceholderText(/pass ifn637/i), 'Pass IFN637')
   expect(screen.getByRole('button', { name: /continue/i })).not.toBeDisabled()
 })
+
+test('shows the progress indicator on step 1', () => {
+  renderWithApp(<GoalSetup />)
+  expect(screen.getByText('Step 1 of 4')).toBeInTheDocument()
+})
