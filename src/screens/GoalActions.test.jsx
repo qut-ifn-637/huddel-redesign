@@ -60,3 +60,24 @@ test('shows hierarchy helper text beneath the heading', () => {
     screen.getByText(/each milestone is a big step toward your goal/i)
   ).toBeInTheDocument()
 })
+
+test('shows an example milestone on first render', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  expect(screen.getByText(/example — tap/i)).toBeInTheDocument()
+  expect(screen.getByText('Write the literature review')).toBeInTheDocument()
+  expect(screen.getByText('Read 2 papers')).toBeInTheDocument()
+  // 'Write 400 words' also appears as a chip suggestion — assert at least one instance exists
+  expect(screen.getAllByText('Write 400 words').length).toBeGreaterThanOrEqual(1)
+  expect(screen.getByText('Draft intro paragraph')).toBeInTheDocument()
+})
+
+test('dismissing the example removes it from the screen', async () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  await userEvent.click(screen.getByRole('button', { name: /dismiss example/i }))
+  expect(screen.queryByText('Write the literature review')).not.toBeInTheDocument()
+})
+
+test('Next remains disabled while only the example is shown and no real actions exist', () => {
+  renderWithApp(<GoalActions />, { initialStateOverrides: seed })
+  expect(screen.getByRole('button', { name: /^next$/i })).toBeDisabled()
+})

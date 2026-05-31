@@ -12,6 +12,7 @@ export default function GoalActions() {
   const { state, updateState, goTo, goBack } = useApp()
   const [milestones, setMilestones] = useState(state.milestones)
   const [expandedId, setExpandedId] = useState(state.milestones[0]?.id ?? null)
+  const [showExample, setShowExample] = useState(true)
 
   function updateMilestone(milestoneId, updater) {
     setMilestones(prev => prev.map(m => (m.id === milestoneId ? updater(m) : m)))
@@ -71,6 +72,25 @@ export default function GoalActions() {
       <p className={styles.helper}>
         Each milestone is a big step toward your goal. Add the actions you&apos;ll actually do inside it.
       </p>
+
+      {showExample && (
+        <div className={styles.exampleMilestone}>
+          <div className={styles.exampleTop}>
+            <span className={styles.exampleLabel}>Example — tap ✕ to remove</span>
+            <button
+              type="button"
+              className={styles.dismissBtn}
+              onClick={() => setShowExample(false)}
+              aria-label="Dismiss example"
+            >✕</button>
+          </div>
+          <p className={styles.exampleName}>Write the literature review</p>
+          <hr className={styles.exampleDivider} />
+          <p className={styles.exampleAction}>Read 2 papers</p>
+          <p className={styles.exampleAction}>Write 400 words</p>
+          <p className={styles.exampleAction}>Draft intro paragraph</p>
+        </div>
+      )}
 
       <div className={styles.milestones}>
         {milestones.map(milestone => (
