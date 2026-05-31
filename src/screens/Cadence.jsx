@@ -44,7 +44,6 @@ export default function Cadence() {
       <BackButton onClick={handleBack} />
       <h1 className={styles.headline}>Nice work. Now, how often can you realistically work on it?</h1>
       <p className={styles.helper}>No wrong answer. You can change this whenever your week changes.</p>
-      <p className="scienceNote">A cadence you&apos;ll actually keep protects commitment. — Locke &amp; Latham, 2002</p>
 
       <div className={styles.options}>
         {OPTIONS.map(opt => (
@@ -77,6 +76,8 @@ export default function Cadence() {
           Smart pick — irregular weeks are exactly what this is built for.
         </p>
       )}
+
+      <p className="scienceNote">A cadence you&apos;ll actually keep protects commitment. — Locke &amp; Latham, 2002</p>
 
       <div className="bottomActions">
         <PrimaryButton onClick={handleNext}>Next</PrimaryButton>

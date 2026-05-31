@@ -76,7 +76,6 @@ export default function GoalActions() {
       {state.goalName && <p className={styles.eyebrow}>{state.goalName}</p>}
       <h1 className={styles.heading}>Break it into milestones</h1>
       <p className={styles.greeting}>Great start — now let&apos;s map out the doable steps.</p>
-      <p className="scienceNote">Near-term milestones build momentum and confidence. — Bandura &amp; Schunk, 1981</p>
       <p className={styles.helper}>
         Each milestone is a big step toward your goal. Add the actions you&apos;ll actually do inside it.
       </p>
@@ -118,6 +117,8 @@ export default function GoalActions() {
       <button type="button" className={styles.addMilestone} onClick={addMilestone}>
         + Add milestone
       </button>
+
+      <p className="scienceNote">Near-term milestones build momentum and confidence. — Bandura &amp; Schunk, 1981</p>
 
       <div className="bottomActions">
         <PrimaryButton onClick={handleNext} disabled={!canAdvance}>

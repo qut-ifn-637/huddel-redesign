@@ -62,8 +62,6 @@ export default function OfferedSocial() {
           onChange={e => setName(e.target.value)}
         />
       </div>
-      <p className="scienceNote">We follow through more for people we respect — pick someone whose cheer would land. — Klein et al., 2020</p>
-
       <p className={styles.rolesHeader}>What will they see?</p>
       <div className={styles.roleChips}>
         {ROLES.map(role => (
@@ -104,6 +102,8 @@ export default function OfferedSocial() {
           ))}
         </ul>
       )}
+
+      <p className="scienceNote">We follow through more for people we respect — pick someone whose cheer would land. — Klein et al., 2020</p>
 
       <div className="bottomActions">
         <PrimaryButton onClick={handleContinue}>Done — continue</PrimaryButton>
