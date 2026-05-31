@@ -42,7 +42,7 @@ export default function SupportingCard({ person, onAct = () => {} }) {
       </div>
       <p className={styles.scGoal}>{person.goal}</p>
       <p className={styles.scProgress}>● {person.progress}</p>
-      {person.struggleFlag && <p className={styles.scStruggle}>○ Flagged a rough week</p>}
+      {person.slipped && <p className={styles.scStruggle}>○ {person.slipped}</p>}
       <div className={styles.scActions}>
         <button type="button" className={styles.scPrimaryAction} onClick={() => onAct(person, 'cheer')}>
           Send encouragement
